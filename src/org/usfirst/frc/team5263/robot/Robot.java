@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team5263.robot.commands.Drive;
 import org.usfirst.frc.team5263.robot.commands.TestPiston;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5263.robot.subsystems.Pneumatics;
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		m_oi = new OI();
 		m_chooser.addDefault("Default Auto", new TestPiston());
+		m_chooser.addObject("Drive", new Drive());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
