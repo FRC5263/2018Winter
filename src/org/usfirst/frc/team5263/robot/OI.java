@@ -7,11 +7,25 @@
 
 package org.usfirst.frc.team5263.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	
+	public static Encoder LeftEncoder = new Encoder(0, 1);
+	public static Encoder RightEncoder = new Encoder(2, 3);
+	
+	public static Double getLeftEncoder() {
+		return (double) LeftEncoder.get();
+	}
+	public static Double getRightEncoder() {
+		 return (double) RightEncoder.get();
+	}
+	
+	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.

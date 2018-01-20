@@ -2,7 +2,9 @@ package org.usfirst.frc.team5263.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5263.robot.OI;
 import org.usfirst.frc.team5263.robot.RobotMap;
 
 /**
@@ -10,13 +12,20 @@ import org.usfirst.frc.team5263.robot.RobotMap;
  */
 public class DriveTrain extends Subsystem {
 	DifferentialDrive robotDrive = RobotMap.robotDrive;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
+	
+	// Get all of the encoders from OI
+	public static double LeftEncoder = OI.getLeftEncoder();
+	public static double RightEncoder = OI.getRightEncoder();
+	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        
     }
+    
+    public static void EncoderDrive(double DriveFeet, double power) {
+    	SmartDashboard.getNumber("Left Encoder", LeftEncoder);
+    	SmartDashboard.getNumber("Right Encoder", RightEncoder);
+    }
+    
     public void drive(double leftSpeed, double rightSpeed, double time) {
     	robotDrive.tankDrive(leftSpeed, rightSpeed);
     }
