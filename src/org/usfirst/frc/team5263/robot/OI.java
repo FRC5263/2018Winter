@@ -15,15 +15,9 @@ import edu.wpi.first.wpilibj.Encoder;
  */
 public class OI {
 	
-	public static Encoder LeftEncoder = new Encoder(0, 1);
-	public static Encoder RightEncoder = new Encoder(2, 3);
 	
-	public static Double getLeftEncoder() {
-		return (double) LeftEncoder.get();
-	}
-	public static Double getRightEncoder() {
-		 return (double) RightEncoder.get();
-	}
+	
+
 	
 	
 	//// CREATING BUTTONS
