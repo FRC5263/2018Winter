@@ -32,6 +32,8 @@ public class Robot extends TimedRobot {
 //			= new ExampleSubsystem();
 	public static final Pneumatics myPneumatics = new Pneumatics();
 	public static final DriveTrain myDrive = new DriveTrain();
+	
+	public static final Drive myDrives = new Drive();
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -43,6 +45,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		myDrives.start();
+		
 		m_oi = new OI();
 		m_chooser.addDefault("Default Auto", new TestPiston());
 		m_chooser.addObject("Drive", new Drive());
@@ -50,7 +54,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
-	/**
+	/**	
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
@@ -125,5 +129,6 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		System.out.println("SPAM SPAM SPAM");
 	}
 }

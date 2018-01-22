@@ -14,8 +14,8 @@ public class DriveTrain extends Subsystem {
 	DifferentialDrive robotDrive = RobotMap.robotDrive;
 	
 	// Get all of the encoders from OI
-	public static double LeftEncoder = OI.getLeftEncoder();
-	public static double RightEncoder = OI.getRightEncoder();
+	public static double LeftEncoder = RobotMap.getLeftEncoder();
+	public static double RightEncoder = RobotMap.getRightEncoder();
 	
     public void initDefaultCommand() {
         
@@ -24,6 +24,13 @@ public class DriveTrain extends Subsystem {
     public static void EncoderDrive(double DriveFeet, double power) {
     	SmartDashboard.getNumber("Left Encoder", LeftEncoder);
     	SmartDashboard.getNumber("Right Encoder", RightEncoder);
+    	
+    	System.out.println("Left Encoder: " + LeftEncoder);
+    	System.out.println("Right Encoder: " + RightEncoder);
+    	
+    	
+    	
+    	
     }
     
     public void drive(double leftSpeed, double rightSpeed, double time) {

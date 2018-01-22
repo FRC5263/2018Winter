@@ -39,10 +39,10 @@ public class RobotMap {
 	public static Encoder LeftEncoder = new Encoder(leftEncoderChannelA, leftEncoderChannelB);
 	public static Encoder RightEncoder = new Encoder(rightEncoderChannelA, rightEncoderChannelB);
 	
-//	public static Double getLeftEncoder() {
-//		return (double) LeftEncoder.get();
-//	}
-//	public static Double getRightEncoder() {
-//		 return (double) RightEncoder.get();
-//	}
+	public static Double getLeftEncoder() {
+		return (double) LeftEncoder.get();
+	}
+	public static Double getRightEncoder() {
+		 return (double) RightEncoder.get();
+	}
 }

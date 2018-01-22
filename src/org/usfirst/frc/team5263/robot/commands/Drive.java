@@ -1,5 +1,8 @@
 package org.usfirst.frc.team5263.robot.commands;
 
+import org.usfirst.frc.team5263.robot.Robot;
+import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -9,11 +12,17 @@ public class Drive extends Command {
 
     public Drive() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        // eg. requires(chassiss);
+    	
+    	requires(Robot.myDrive);
+    	setTimeout(.5);
+    	
+    	initialize();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	DriveTrain.EncoderDrive(0, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
