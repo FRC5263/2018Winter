@@ -9,6 +9,7 @@ package org.usfirst.frc.team5263.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;;
 
@@ -25,9 +26,13 @@ public class RobotMap {
 	private static final int rightEncoderChannelA = 2;
 	private static final int rightEncoderChannelB = 3;
 	
-	//pwm channel variables
-	private static final VictorSP  rightDriveChannel = new VictorSP(1);
-	private static final VictorSP  leftDriveChannel = new VictorSP(0);
+	//Channel info for motor
+	private static final int leftTalonMotor = 0;
+	private static final int rightTalonMotor = 1;
+	
+	//Talons and such
+	public static final Talon leftMotor = new Talon(leftTalonMotor);
+	public static final Talon rightMotor = new Talon(rightTalonMotor);
 	
 	//pneumatic channel variables
 	private static final int pistonSolenoidForwardChannel = 0;
@@ -35,7 +40,7 @@ public class RobotMap {
 	
 	//objects
 	public static DoubleSolenoid pistonSolenoid = new DoubleSolenoid(RobotMap.pistonSolenoidForwardChannel, RobotMap.pistonSolenoidReverseChannel); //forward channel, reverse channel 
-	public static DifferentialDrive robotDrive = new DifferentialDrive(leftDriveChannel, rightDriveChannel);
+	public static DifferentialDrive myRobot = new DifferentialDrive(leftMotor, rightMotor);
 	public static Encoder LeftEncoder = new Encoder(leftEncoderChannelA, leftEncoderChannelB);
 	public static Encoder RightEncoder = new Encoder(rightEncoderChannelA, rightEncoderChannelB);
 	

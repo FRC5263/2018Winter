@@ -8,13 +8,17 @@
 
 package org.usfirst.frc.team5263.robot;
 
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.commands.Drive;
+import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.TestPiston;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5263.robot.subsystems.Pneumatics;
@@ -45,11 +49,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		myDrives.start();
-		
 		m_oi = new OI();
 		m_chooser.addDefault("Default Auto", new TestPiston());
 		m_chooser.addObject("Drive", new Drive());
+		m_chooser.addObject("Drive To", new DriveTo());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
@@ -128,7 +131,8 @@ public class Robot extends TimedRobot {
 	 * This function is called periodically during test mode.
 	 */
 	@Override
-	public void testPeriodic() {
-		System.out.println("SPAM SPAM SPAM");
+	public void testPeriodic() {		
+		myDrives.start();
+
 	}
 }

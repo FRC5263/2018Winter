@@ -1,33 +1,30 @@
 package org.usfirst.frc.team5263.robot.commands;
 
 import org.usfirst.frc.team5263.robot.Robot;
-import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5263.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Drive extends Command {
+public class DriveTo extends Command {
 
-    public Drive() {
+    public DriveTo() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassiss);
-    	
-    	requires(Robot.myDrive);
-    	setTimeout(.5);
-    
-    	
-    	
-    	System.out.println("IF  YOU ARE SEEING THIS, THEN DRIVE WAS ABLE TO RUN");
-    	initialize();
+        requires(Robot.myDrive);
+        setTimeout(.5);
     }
-
+    
+    // Drive a specific distance
+    public static void Drive(double leftspeed, double rightSpeed) {
+    	RobotMap.myRobot.tankDrive(leftspeed, rightSpeed);
+    }
+    
     // Called just before this Command runs the first time
     protected void initialize() {
-    	DriveTrain.EncoderDrive(10, 12);
     }
-    	
+
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     }
