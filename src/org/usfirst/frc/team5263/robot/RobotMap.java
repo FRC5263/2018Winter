@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -20,7 +21,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;;
  * floating around.
  */
 public class RobotMap {
-    //dio channel variables
+	
+	//dio channel variables
 	private static final int leftEncoderChannelA = 0;
 	private static final int leftEncoderChannelB = 1;
 	private static final int rightEncoderChannelA = 2;
@@ -44,11 +46,4 @@ public class RobotMap {
 	public static DifferentialDrive myRobot = new DifferentialDrive(leftMotor, rightMotor);
 	public static Encoder LeftEncoder = new Encoder(leftEncoderChannelA, leftEncoderChannelB);
 	public static Encoder RightEncoder = new Encoder(rightEncoderChannelA, rightEncoderChannelB);
-	
-	public static Double getLeftEncoder() {
-		return (double) LeftEncoder.get();
-	}
-	public static Double getRightEncoder() {
-		 return (double) RightEncoder.get();
-	}
 }

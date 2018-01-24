@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5263.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -13,24 +14,31 @@ import org.usfirst.frc.team5263.robot.RobotMap;
  */
 public class DriveTrain extends Subsystem {
 	
-	// Get all of the encoders from OI
-	public static double LeftEncoder = RobotMap.getLeftEncoder();
-	public static double RightEncoder = RobotMap.getRightEncoder();
-	
 	public static double feet;
+	
+	public static Encoder LeftEncoder = RobotMap.LeftEncoder;
+	public static Encoder RightEncoder = RobotMap.RightEncoder;
 	
     public void initDefaultCommand() {
         
     }
     
     public static void EncoderDrive(double DriveFeet, double power) {
-    	SmartDashboard.getNumber("Left Encoder", LeftEncoder);
-    	SmartDashboard.getNumber("Right Encoder", RightEncoder);
+    	SmartDashboard.putNumber("Left Encoder: ", getLeftEncoder());
+    	SmartDashboard.putNumber("Right Encoder", getRightEncoder());
     	
-    	System.out.println("Left Encoder: " + LeftEncoder);
-    	System.out.println("Right Encoder: " + RightEncoder);
+    	System.out.println("Left Encoder: " + getLeftEncoder());
+    	System.out.println("Right Encoder: " + getRightEncoder());
     	System.out.println("Drive feet and such"+ DriveFeet);
     	System.out.println("Power to drive and such"+ power);
     }
+    
+    public static Double getLeftEncoder() {
+		return (double) RobotMap.LeftEncoder.get();
+	}
+    
+	public static Double getRightEncoder() {
+		 return (double) RobotMap.RightEncoder.get();
+	}
 }
 

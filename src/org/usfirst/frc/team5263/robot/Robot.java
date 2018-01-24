@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import javax.print.attribute.SetOfIntegerSyntax;
 
 import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
@@ -95,8 +94,8 @@ public class Robot extends TimedRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
-
-		// schedule the autonomous command (example)
+		
+		
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 		}
