@@ -14,10 +14,12 @@ public class DriveTo extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.myDrive);
         setTimeout(.5);
+        
+        drive(1, 1);
     }
     
     // Drive a specific distance
-    public static void Drive(double leftspeed, double rightSpeed) {
+    public static void drive(double leftspeed, double rightSpeed) {
     	RobotMap.myRobot.tankDrive(leftspeed, rightSpeed);
     }
     

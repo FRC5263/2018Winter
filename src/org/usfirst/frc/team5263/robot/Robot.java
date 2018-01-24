@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import javax.print.attribute.SetOfIntegerSyntax;
+
 import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.commands.Drive;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
@@ -37,7 +39,7 @@ public class Robot extends TimedRobot {
 	public static final Pneumatics myPneumatics = new Pneumatics();
 	public static final DriveTrain myDrive = new DriveTrain();
 	
-	public static final Drive myDrives = new Drive();
+	
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -49,9 +51,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		
 		m_oi = new OI();
+		
 		m_chooser.addDefault("Default Auto", new TestPiston());
-		m_chooser.addObject("Drive", new Drive());
 		m_chooser.addObject("Drive To", new DriveTo());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -106,6 +109,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+		
 	}
 
 	@Override

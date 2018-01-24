@@ -34,6 +34,7 @@ public class RobotMap {
 	public static final Talon leftMotor = new Talon(leftTalonMotor);
 	public static final Talon rightMotor = new Talon(rightTalonMotor);
 	
+	
 	//pneumatic channel variables
 	private static final int pistonSolenoidForwardChannel = 0;
 	private static final int pistonSolenoidReverseChannel = 1;
