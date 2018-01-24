@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5263.robot.subsystems;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -15,6 +16,8 @@ import org.usfirst.frc.team5263.robot.RobotMap;
 public class DriveTrain extends Subsystem {
 	
 	public static double feet;
+	
+	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	
 	public static Encoder LeftEncoder = RobotMap.LeftEncoder;
 	public static Encoder RightEncoder = RobotMap.RightEncoder;
