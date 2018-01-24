@@ -8,6 +8,9 @@
 package org.usfirst.frc.team5263.robot;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -41,4 +44,14 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	public Joystick main = new Joystick(0);
+	Button buttonA = new JoystickButton(main, 1);
+	Button buttonB = new JoystickButton(main, 2);
+	Button buttonX = new JoystickButton(main, 3);
+	Button buttonY = new JoystickButton(main, 4);
+	
+	public OI() {
+		
+	}
 }
