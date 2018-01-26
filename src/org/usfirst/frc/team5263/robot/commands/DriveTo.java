@@ -17,6 +17,10 @@ public class DriveTo extends Command {
 	public static Encoder leftEncoder = RobotMap.LeftEncoder;
 	public static Encoder rightEncoder = RobotMap.RightEncoder;
 	
+	public static double encoderTarget;
+	public static double currentEncoderValue;
+	public static double difference;
+	
     public DriveTo() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.myDrive);
@@ -26,12 +30,48 @@ public class DriveTo extends Command {
     
     
     // Drive a specific distance
+    //Takes the distance you want to drive and power
+    //DONT USE ONE FOR POWER
     public static void drive(double driveDistanceFeet, double power) {
-    	double encoderTarget = (driveDistanceFeet * 12) / (Math.PI * 6) * 1440 / 4;
     	
-    	System.out.println(encoderTarget);
+    	//Converts Feet to Encoder values
+    	encoderTarget = (driveDistanceFeet * 12) / (Math.PI * 6) * 1440 / 4;
     	
-    	//RobotMap.myRobot.tankDrive(leftspeed, rightSpeed);
+    	//Get the average of both encoders
+    	currentEncoderValue = (
+    			leftEncoder.getDistance() + rightEncoder.getDistance()
+    			)/2;
+    	System.out.println(currentEncoderValue);
+    	
+    	//Find the difference of where we are and were we want to be
+    	difference = currentEncoderValue - encoderTarget;
+    	
+    	if(counter < 50) {
+    	RobotMap.myRobot.tankDrive(power, power);
+    	}else {
+    		counter = 0;
+    	}
+    	
+    	//Find the difference of where we are and were we want to be
+    	difference = currentEncoderValue - encoderTarget;
+    	
+    	if(difference >= 20 ) {
+    		if(counter < 25) {
+    		RobotMap.myRobot.tankDrive(-(power), -(power));
+    		}else {
+    			counter = 0;
+    		}
+    	}else {
+    		if(difference <= -20) {
+    			if(counter < 25) {
+    				RobotMap.myRobot.tankDrive(power, power);
+    			}else {
+    				counter = 0;
+    			}
+    		}else {
+    			System.out.println("SOMETHING WENT VERY WRONG");
+    		}
+    	}
     	
     	counter++;
     }
