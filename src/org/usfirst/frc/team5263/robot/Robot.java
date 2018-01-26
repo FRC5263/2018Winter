@@ -108,7 +108,7 @@ public class Robot extends TimedRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		
-		
+		m_autonomousCommand.start();
 	}
 
 	@Override
