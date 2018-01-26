@@ -31,7 +31,9 @@ public class DriverOperated extends Command {
     	 * Axis 4 - Right Stick X 
     	 * Axis 5 - Right Stick Y
     	 */
-    	DriveTrain.Drive(leftStickSpeed, rightStickSpeed);
+    	
+    	DriveTrain.Drive(-leftStickSpeed, -rightStickSpeed);
+    	
     	
     }
 
