@@ -14,6 +14,7 @@ import org.usfirst.frc.team5263.robot.RobotMap;
  */
 public class DriveTrain extends Subsystem {
 	
+	public static DifferentialDrive myRobot = new DifferentialDrive(RobotMap.leftMotor, RobotMap.rightMotor);
 	public static double feet;
 	
 	public static Encoder LeftEncoder = RobotMap.LeftEncoder;
@@ -39,6 +40,10 @@ public class DriveTrain extends Subsystem {
     
 	public static Double getRightEncoder() {
 		 return (double) RobotMap.RightEncoder.get();
+	}
+	
+	public static void Drive(double leftPower, double rightPower) {
+		myRobot.tankDrive(leftPower, rightPower);
 	}
 }
 

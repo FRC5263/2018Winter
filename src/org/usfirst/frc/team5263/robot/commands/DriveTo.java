@@ -46,34 +46,15 @@ public class DriveTo extends Command {
     	//Find the difference of where we are and were we want to be
     	difference = currentEncoderValue - encoderTarget;
     	
-    	if(counter < 50) {
-    	RobotMap.myRobot.tankDrive(power, power);
-    	}else {
-    		counter = 0;
-    	}
     	
-    	//Find the difference of where we are and were we want to be
-    	difference = currentEncoderValue - encoderTarget;
-    	
-    	if(difference >= 20 ) {
-    		if(counter < 25) {
-    		RobotMap.myRobot.tankDrive(-(power), -(power));
-    		}else {
-    			counter = 0;
-    		}
-    	}else {
-    		if(difference <= -20) {
-    			if(counter < 25) {
-    				RobotMap.myRobot.tankDrive(power, power);
-    			}else {
-    				counter = 0;
-    			}
-    		}else {
-    			System.out.println("SOMETHING WENT VERY WRONG");
-    		}
-    	}
     	
     	counter++;
+    }
+    
+    public static boolean closeEnough() {
+    	
+    	
+    	return true;
     }
     
     // Called just before this Command runs the first time
@@ -83,7 +64,7 @@ public class DriveTo extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        drive(10, .5);
+        drive(2, .5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
