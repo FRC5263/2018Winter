@@ -43,7 +43,7 @@ public class RobotMap {
 	
 	//objects
 	public static DoubleSolenoid pistonSolenoid = new DoubleSolenoid(RobotMap.pistonSolenoidForwardChannel, RobotMap.pistonSolenoidReverseChannel); //forward channel, reverse channel 
-	public static DifferentialDrive myRobot = new DifferentialDrive(leftMotor, rightMotor);
+//	public static DifferentialDrive myRobot = new DifferentialDrive(leftMotor, rightMotor);
 	public static Encoder LeftEncoder = new Encoder(leftEncoderChannelA, leftEncoderChannelB);
 	public static Encoder RightEncoder = new Encoder(rightEncoderChannelA, rightEncoderChannelB);
 }
