@@ -13,7 +13,8 @@ import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
  */
 public class Rotation extends Command {
 	
-	
+	double current;
+	double difference;
 	
 	public Rotation() {
 		requires(Robot.myDrive);
@@ -32,6 +33,15 @@ public class Rotation extends Command {
 	
     // Called just before this Command runs the first time
     protected void initialize() {
+    }
+    public boolean Rotate(double degrees) {
+    	
+    	current = getGyroAngle();
+    	
+    	difference = current - degrees;
+    	
+    	
+    	return true;
     }
 
     // Called repeatedly when this Command is scheduled to run
