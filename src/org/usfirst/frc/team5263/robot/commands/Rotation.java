@@ -3,6 +3,8 @@ package org.usfirst.frc.team5263.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDSourceType;
 
 import org.usfirst.frc.team5263.robot.Robot;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
@@ -21,8 +23,12 @@ public class Rotation extends Command {
 		setTimeout(.5);
 		
 		ADXRS450_Gyro gyro = DriveTrain.gyro;
+		Encoder LeftEncoder = DriveTrain.LeftEncoder;
+		Encoder RightEncoder = DriveTrain.RightEncoder;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+		
+		LeftEncoder.setPIDSourceType(PIDSourceType.kRate);
     }
 	
 	public double getGyroAngle() {

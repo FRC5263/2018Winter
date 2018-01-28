@@ -44,7 +44,13 @@ public class DriveTo extends Command {
     	System.out.println(currentEncoderValue);
     	
     	//Find the difference of where we are and were we want to be
-    	difference = currentEncoderValue - encoderTarget;
+    	difference = encoderTarget - currentEncoderValue;
+    	
+    	if(counter > 50) {
+    	Robot.myDrive.myRobot.tankDrive(power, power);
+    	}
+    	//Find the difference of where we are and were we want to be
+    	difference = encoderTarget - currentEncoderValue;
     	
     	
     	
@@ -53,6 +59,9 @@ public class DriveTo extends Command {
     
     public static boolean closeEnough() {
     	
+    	if(difference < encoderTarget) {
+    		
+    	}
     	
     	return true;
     }
