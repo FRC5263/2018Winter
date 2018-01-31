@@ -20,6 +20,7 @@ public class DriveTo extends Command {
 	public static double encoderTarget;
 	public static double currentEncoderValue;
 	public static double difference;
+	public static double doNotRun;
 	
     public DriveTo() {
         // Use requires() here to declare subsystem dependencies
@@ -46,13 +47,29 @@ public class DriveTo extends Command {
     	//Find the difference of where we are and were we want to be
     	difference = encoderTarget - currentEncoderValue;
     	
-    	if(counter > 50) {
-    	Robot.myDrive.myRobot.tankDrive(power, power);
+    	if(counter < 50 && doNotRun == 0) {
+    	DriveTrain.myRobot.tankDrive(power, power);
+    	}else {
+    		doNotRun = 1;
+    		counter = 0;
     	}
     	//Find the difference of where we are and were we want to be
     	difference = encoderTarget - currentEncoderValue;
     	
-    	
+    	if(difference > 20) {
+    		if(counter < 20 && doNotRun == 1) {
+    			DriveTrain.myRobot.tankDrive(power, power);
+    		}else {
+    			doNotRun = 2;
+    			counter = 0;
+    		}
+    	}else {
+    		if(difference < 20) {
+    			System.out.println("You GOOOD");
+    		}else {
+    			System.out.println("You probably good!!!! ");
+    		}
+    	}
     	
     	counter++;
     }
@@ -73,7 +90,7 @@ public class DriveTo extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        drive(2, .5);
+        drive(3, .5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
