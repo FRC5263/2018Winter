@@ -38,11 +38,11 @@ public class DriveTrain extends Subsystem {
     }
     
     public static Double getLeftEncoder() {
-		return (double) RobotMap.LeftEncoder.get();
+		return (double) -RobotMap.LeftEncoder.get();
 	}
     
 	public static Double getRightEncoder() {
-		 return (double) RobotMap.RightEncoder.get();
+		 return (double) -RobotMap.RightEncoder.get();
 	}
 	
 	public static void Drive(double leftPower, double rightPower) {
