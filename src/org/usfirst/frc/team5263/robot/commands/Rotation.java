@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
 
 import org.usfirst.frc.team5263.robot.Robot;
+import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 
 
@@ -17,6 +18,7 @@ public class Rotation extends Command {
 	
 	double current;
 	double difference;
+	public static int counter;
 	
 	public Rotation() {
 		requires(Robot.myDrive);
@@ -43,10 +45,14 @@ public class Rotation extends Command {
     public boolean Rotate(double degrees) {
     	
     	current = getGyroAngle();
-    	
+    	int ran = 0;
     	difference = current - degrees;
     	
+    	if(counter < 50 && ran ==0 ) {
+    		DriveTrain.myRobot.tankDrive(.4,-.4);
+    	}
     	
+    	counter++;    	
     	return true;
     }
 
