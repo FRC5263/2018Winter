@@ -151,4 +151,9 @@ public class Robot extends TimedRobot {
 	public void testPeriodic() {		
 		
 	}
+
+	@Override
+	public void robotPeriodic() {
+		DriveTrain.putAHRSOnDashboard();
+	}
 }
