@@ -45,14 +45,19 @@ public class DriveTo extends Command {
     	//Converts Feet to Encoder values
     	encoderTarget = ((driveDistanceFeet * 12) / (Math.PI * 6) * 1440 / 4);
     	// if target is negative, target is negative
+    	
     	if(encoderTarget >= 0) {
     		direction = 1.0;
     	} else {
     		direction = -1.0;
     	}
+    	//then direction is negative
     	
-    	if(DriveTrain.getLeftEncoder() < encoderTarget) {
-    		DriveTrain.myRobot.tankDrive(direction * power, direction * power);
+    	encoderTarget = direction * ((driveDistanceFeet * 12) / (Math.PI * 6) * 1440 / 4);
+    	//-1 * negative = positive
+    	
+    	if(DriveTrain.getLeftEncoder()*direction < encoderTarget) {
+    		DriveTrain.drive(direction * power, direction * power);
     	}else {
     		isFinished = true;
     	}
