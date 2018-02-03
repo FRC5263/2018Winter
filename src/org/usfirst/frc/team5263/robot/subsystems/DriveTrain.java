@@ -19,8 +19,7 @@ public class DriveTrain extends Subsystem {
 	
 	private static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	public static double getRotation() {
-		double gyroAngle = DriveTrain.gyro.getAngle();
-		return gyroAngle * (360.0/325.0); //(360.0/330.0); //327 on comp bot, 340 on test bot
+		return ahrs.getAngle();
 	}
 	public static Encoder LeftEncoder = RobotMap.LeftEncoder;
 	public static Encoder RightEncoder = RobotMap.RightEncoder;
