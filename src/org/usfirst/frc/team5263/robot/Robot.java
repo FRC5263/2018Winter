@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.DriverOperated;
+import org.usfirst.frc.team5263.robot.commands.Rotation;
 import org.usfirst.frc.team5263.robot.commands.TestPiston;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5263.robot.subsystems.Pneumatics;
@@ -55,6 +56,7 @@ public class Robot extends TimedRobot {
 		
 		m_chooser.addDefault("Default Auto", new TestPiston());
 		m_chooser.addObject("Drive To", new DriveTo());
+		m_chooser.addObject("Rotate to", new Rotation(90));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
@@ -108,8 +110,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		
-		m_autonomousCommand.start();
 	}
 
 	@Override
