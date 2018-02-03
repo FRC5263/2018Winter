@@ -15,64 +15,60 @@ import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
  *
  */
 public class Rotation extends Command {
-	
+
 	double current;
 	double difference;
-	public static int counter;
-	
-	public Rotation() {
+	double angle;
+
+	public Rotation(double angle) {
 		requires(Robot.myDrive);
 		setTimeout(.5);
+		this.angle = angle;
 		
-		ADXRS450_Gyro gyro = DriveTrain.gyro;
-		Encoder LeftEncoder = DriveTrain.LeftEncoder;
-		Encoder RightEncoder = DriveTrain.RightEncoder;
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-		
-		LeftEncoder.setPIDSourceType(PIDSourceType.kRate);
-    }
-	
-	public double getGyroAngle() {
-		
-		double gyroAngle = DriveTrain.gyro.getAngle();
-		return gyroAngle * (360.0/325.0); //(360.0/330.0); //327 on comp bot, 340 on test bot
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+
 	}
+
+
+
+	// Called just before this Command runs the first time
+	protected void initialize() {
+	}
+
+	// Positive is to the right and negative is to the left
 	
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
-    public boolean Rotate(double degrees) {
-    	
-    	current = getGyroAngle();
-    	int ran = 0;
-    	difference = current - degrees;
-    	
-    	if(counter < 50 && ran ==0 ) {
-    		DriveTrain.myRobot.tankDrive(.4,-.4);
-    	}
-    	
-    	counter++;    	
-    	return true;
-    }
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    SmartDashboard.putNumber("gyro: ", getGyroAngle());
-    
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		current = DriveTrain.getRotation();
+		difference = angle - current;
+		if(difference > 0){
+			// Method below means turn right
+			DriveTrain.myRobot.tankDrive(.4,-.4);
+		}
+		if(difference < 0){
+			// Method below means turn left
+			DriveTrain.myRobot.tankDrive(-.4,.4);
+		}
+		SmartDashboard.putNumber("gyro: ", DriveTrain.getRotation());
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+
+
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return false;
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }

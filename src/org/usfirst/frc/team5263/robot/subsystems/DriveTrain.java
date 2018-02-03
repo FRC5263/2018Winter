@@ -18,8 +18,11 @@ public class DriveTrain extends Subsystem {
 	public static DifferentialDrive myRobot = new DifferentialDrive(RobotMap.leftMotor, RobotMap.rightMotor);
 	public static double feet;
 	
-	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-	
+	private static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+	public static double getRotation() {
+		double gyroAngle = DriveTrain.gyro.getAngle();
+		return gyroAngle * (360.0/325.0); //(360.0/330.0); //327 on comp bot, 340 on test bot
+	}
 	public static Encoder LeftEncoder = RobotMap.LeftEncoder;
 	public static Encoder RightEncoder = RobotMap.RightEncoder;
 	
