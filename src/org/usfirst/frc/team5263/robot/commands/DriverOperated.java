@@ -35,7 +35,7 @@ public class DriverOperated extends Command {
     	 * Axis 5 - Right Stick Y
     	 */
     	
-    	DriveTrain.Drive(-leftStickSpeed, -rightStickSpeed);
+    	DriveTrain.drive(-leftStickSpeed, -rightStickSpeed);
     	
         /* Display 6-axis Processed Angle Data                                      */
         SmartDashboard.putBoolean(  "IMU_Connected",        DriveTrain.ahrs.isConnected());

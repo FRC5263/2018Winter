@@ -45,11 +45,11 @@ public class Rotation extends Command {
 		difference = angle - current;
 		if(difference > 0){
 			// Method below means turn right
-			DriveTrain.myRobot.tankDrive(.4,-.4);
+			DriveTrain.drive(.4,-.4);
 		}
 		if(difference < 0){
 			// Method below means turn left
-			DriveTrain.myRobot.tankDrive(-.4,.4);
+			DriveTrain.drive(-.4,.4);
 		}
 		SmartDashboard.putNumber("gyro: ", DriveTrain.getRotation());
 
