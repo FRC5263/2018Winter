@@ -21,6 +21,7 @@ import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.DriverOperated;
 import org.usfirst.frc.team5263.robot.commands.TestPiston;
+import org.usfirst.frc.team5263.robot.commands.Wait;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5263.robot.subsystems.Pneumatics;
 //import org.usfirst.frc.team5263.robot.subsystems.ExampleSubsystem;
@@ -54,7 +55,8 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		
 		m_chooser.addDefault("Default Auto", new TestPiston());
-		m_chooser.addObject("Drive To", new DriveTo());
+		m_chooser.addObject("Drive To", new DriveTo(3, .5));
+		m_chooser.addObject("Wait", new Wait(5));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}

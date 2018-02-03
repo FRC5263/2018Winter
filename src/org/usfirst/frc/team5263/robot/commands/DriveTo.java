@@ -19,15 +19,24 @@ public class DriveTo extends Command {
 	private double direction = 0;
 	private boolean isFinished = false;
 	
-	public DriveTo() {
-		requires(Robot.myDrive);
-	}
+	double driveDistanceFeet;
+	double power;
 	
-    // Drive a specific distance
-    //Takes the distance you want to drive and power
-    //DONT USE ONE FOR POWER
-    public void drive(double driveDistanceFeet, double power) {
+	public DriveTo(double driveDistanceFeet, double power) {
+		requires(Robot.myDrive);
+		
+		this.driveDistanceFeet = driveDistanceFeet;
+		this.power = power;
+	}
+    
+    // Called just before this Command runs the first time
+    protected void initialize() {
     	
+    }
+
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+
     	SmartDashboard.putNumber("encoder Target:", encoderTarget);
     	SmartDashboard.putNumber("Left Encoder Value", DriveTrain.getLeftEncoder());
     	SmartDashboard.putNumber("Right Encoder Value", DriveTrain.getRightEncoder());
@@ -41,30 +50,17 @@ public class DriveTo extends Command {
     	} else {
     		direction = -1.0;
     	}
-    	// then direction is negative
-    	encoderTarget = direction * ((driveDistanceFeet * 12) / (Math.PI * 6) * 1440 / 4);
-    	//-1 * negative = positive
-    	if(	(DriveTrain.getLeftEncoder()*direction) < encoderTarget	) {
-    		DriveTrain.Drive(direction * power, direction * power);
-    	} else {
+    	
+    	if(DriveTrain.getLeftEncoder() < encoderTarget) {
+    		DriveTrain.myRobot.tankDrive(direction * power, direction * power);
+    	}else {
     		isFinished = true;
-    	}	
+    	}
+    	
     	// encoder values will grow negatively, but multiply by negative direction for pos
     	// if pos growing enc values are less than high encoder target value, 
     	//power motors in the right direction, will eventually reach target and terminate
     	//command
-    	
-    	
-    }
-    
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-        drive(10, .5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
