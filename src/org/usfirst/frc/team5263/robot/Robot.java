@@ -91,6 +91,12 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		System.out.println("autonomous init");
+		if (m_autonomousCommand != null) {
+			System.out.println("Cancelling existing command");
+			m_autonomousCommand.cancel();
+		}
+		
 		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
@@ -102,7 +108,10 @@ public class Robot extends TimedRobot {
 		
 		
 		if (m_autonomousCommand != null) {
+			System.out.println("selected command is " + m_autonomousCommand.getName());
 			m_autonomousCommand.start();
+		} else {
+			System.out.println("selected command is NULL, running NO AUTON");
 		}
 	}
 
