@@ -121,6 +121,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		teleop.start();
 	}
 
 	/**
@@ -129,7 +130,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		teleop.start();
+		
 	}
 
 	/**

@@ -5,11 +5,10 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team5263.robot.OI;
-import org.usfirst.frc.team5263.robot.Robot;
 import org.usfirst.frc.team5263.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.SPI;
+import com.kauailabs.navx.frc.AHRS;
 /**
  *
  */
@@ -25,6 +24,7 @@ public class DriveTrain extends Subsystem {
 	}
 	public static Encoder LeftEncoder = RobotMap.LeftEncoder;
 	public static Encoder RightEncoder = RobotMap.RightEncoder;
+	public static AHRS ahrs = new AHRS(SPI.Port.kMXP); 
 	
     public void initDefaultCommand() {
         
@@ -41,15 +41,16 @@ public class DriveTrain extends Subsystem {
     }
     
     public static Double getLeftEncoder() {
-		return (double) RobotMap.LeftEncoder.get();
+		return (double) -RobotMap.LeftEncoder.get();
 	}
     
 	public static Double getRightEncoder() {
-		 return (double) RobotMap.RightEncoder.get();
+		 return (double) -RobotMap.RightEncoder.get();
 	}
 	
 	public static void Drive(double leftPower, double rightPower) {
 		myRobot.tankDrive(leftPower, rightPower);
 	}
+	
 }
 
