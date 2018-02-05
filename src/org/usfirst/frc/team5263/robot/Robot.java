@@ -93,6 +93,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		DriveTrain.reset();
+		
 		System.out.println("autonomous init");
 		if (m_autonomousCommand != null) {
 			System.out.println("Cancelling existing command");

@@ -67,7 +67,6 @@ public class DriveTo extends Command {
     	//power motors in the right direction, will eventually reach target and terminate
     	//command
     }
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	

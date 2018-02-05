@@ -130,5 +130,9 @@ public class DriveTrain extends Subsystem {
 		myRobot.tankDrive(leftPower, rightPower);
 	}
 	
+	public static void reset() {
+		ahrs.reset();
+	}
+	
 }
 
