@@ -75,6 +75,7 @@ public class DriveTo extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	DriveTrain.drive(0.0, 0.0);
     }
 
     // Called when another command which requires one or more of the same
