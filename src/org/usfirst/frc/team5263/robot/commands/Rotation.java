@@ -19,6 +19,8 @@ public class Rotation extends Command {
 	double current;
 	double difference;
 	double angle;
+	
+	boolean isFinished = false;
 
 	public Rotation(double angle) {
 		requires(Robot.myDrive);
@@ -40,7 +42,7 @@ public class Rotation extends Command {
 	
 
 	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
+	protected void execute() { 
 		current = DriveTrain.getRotation();
 		difference = angle - current;
 		if(difference > 0){
@@ -50,6 +52,11 @@ public class Rotation extends Command {
 		if(difference < 0){
 			// Method below means turn left
 			DriveTrain.drive(-.4,.4);
+			
+		}
+		if(Math.abs(difference) < 5){ 
+			DriveTrain.drive(0, 0);
+			isFinished = true;
 		}
 		SmartDashboard.putNumber("gyro: ", DriveTrain.getRotation());
 
@@ -60,7 +67,7 @@ public class Rotation extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return isFinished;
 	}
 
 	// Called once after isFinished returns true
