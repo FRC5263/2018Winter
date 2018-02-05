@@ -36,6 +36,7 @@ public class Rotation extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+	DriveTrain.reset();
 	}
 
 	// Positive is to the right and negative is to the left
