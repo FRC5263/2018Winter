@@ -14,7 +14,7 @@ public class Pneumatics extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	DoubleSolenoid pistonSolenoid = RobotMap.pistonSolenoid;
+//	DoubleSolenoid pistonSolenoid = RobotMap.pistonSolenoid;
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -23,15 +23,15 @@ public class Pneumatics extends Subsystem {
     }
     
     public void off() {
-    	pistonSolenoid.set(DoubleSolenoid.Value.kOff);
+//    	pistonSolenoid.set(DoubleSolenoid.Value.kOff);
     }
     
     public void forward() {
-    	pistonSolenoid.set(DoubleSolenoid.Value.kForward);
+//    	pistonSolenoid.set(DoubleSolenoid.Value.kForward);
     }
     
     public void reverse() {
-    	pistonSolenoid.set(DoubleSolenoid.Value.kReverse);
+//    	pistonSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
     

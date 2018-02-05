@@ -25,7 +25,7 @@ import org.usfirst.frc.team5263.robot.commands.Rotation;
 import org.usfirst.frc.team5263.robot.commands.TestPiston;
 import org.usfirst.frc.team5263.robot.commands.Wait;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team5263.robot.subsystems.Pneumatics;
+//import org.usfirst.frc.team5263.robot.subsystems.Pneumatics;
 //import org.usfirst.frc.team5263.robot.subsystems.ExampleSubsystem;
 
 /**
@@ -38,7 +38,7 @@ import org.usfirst.frc.team5263.robot.subsystems.Pneumatics;
 public class Robot extends TimedRobot {
 //	public static final ExampleSubsystem kExampleSubsystem
 //			= new ExampleSubsystem();
-	public static final Pneumatics myPneumatics = new Pneumatics();
+//	public static final Pneumatics myPneumatics = new Pneumatics();
 	public static final DriveTrain myDrive = new DriveTrain();
 	
 	
