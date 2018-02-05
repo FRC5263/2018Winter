@@ -15,8 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RotatePID extends Command {
 
 	PIDController turnController;
-	private double rorateToAngleRate;
-
+	AHRS ahrs;
 	static final double kP = 0.03;
 	static final double kI = 0.00;
 	static final double kD = 0.00;
@@ -24,47 +23,53 @@ public class RotatePID extends Command {
 
 	static final double kToleranceDegrees = 2.0f;
 
-	AHRS ahrs = DriveTrain.ahrs;
+	private double degrees;
 
-	public RotatePID(double degrees) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+	public RotatePID(double angle) {
+		
 		requires(Robot.myDrive);
-		turnController = new PIDController(kP, kI, kD, kF, ahrs, new PIDOutput() {
+		ahrs = DriveTrain.ahrs;
+		
+		turnController = new PIDController(kP, kI, kD, kF, ahrs,  new PIDOutput() {
 			@Override
 			public void pidWrite(double output) {
-				// TODO Auto-generated method stub
-				//manipulators.myRobot.tankDrive(output, -output);
 				DriveTrain.drive(output, -output);
 			}
 		});
 		
-
         turnController.setInputRange(-180.0f,  180.0f);
         turnController.setOutputRange(-1.0, 1.0);
         turnController.setAbsoluteTolerance(kToleranceDegrees);
         turnController.setContinuous(true);
+        
+        this.degrees = angle;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		turnController.setSetpoint(degrees);
+		turnController.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return turnController.onTarget();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		turnController.disable();
+		ahrs.reset(); //maybee
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
 	}
+	
 }

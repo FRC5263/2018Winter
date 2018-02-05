@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.DriverOperated;
+import org.usfirst.frc.team5263.robot.commands.RotatePID;
 import org.usfirst.frc.team5263.robot.commands.Rotation;
 import org.usfirst.frc.team5263.robot.commands.TestPiston;
 import org.usfirst.frc.team5263.robot.commands.Wait;
@@ -59,6 +60,7 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Rotate to", new Rotation(90));
 		m_chooser.addObject("Drive To", new DriveTo(3, .5));
 		m_chooser.addObject("Wait", new Wait(5));
+		m_chooser.addObject("RotatePID", new RotatePID(90));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
