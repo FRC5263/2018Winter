@@ -36,6 +36,7 @@ public class DriverOperated extends Command {
     	 */
     	
     	DriveTrain.drive(-leftStickSpeed, -rightStickSpeed);
+    	SmartDashboard.putNumber("Ultrasonic Distance", DriveTrain.getSonicDistance());
     }
 
     // Make this return true when this Command no longer needs to run execute()

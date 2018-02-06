@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5263.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Ultrasonic;
+
 import com.kauailabs.navx.frc.AHRS;
 /**
  *
@@ -24,6 +26,12 @@ public class DriveTrain extends Subsystem {
 	public static Encoder LeftEncoder = RobotMap.LeftEncoder;
 	public static Encoder RightEncoder = RobotMap.RightEncoder;
 	public static AHRS ahrs = new AHRS(SPI.Port.kMXP); 
+	public static Ultrasonic sonic = new Ultrasonic(4,5); //input, output on the sensor
+	
+	public DriveTrain() {
+		sonic.setAutomaticMode(true);
+	}
+	
 	public static void putAHRSOnDashboard() {
 		/* Display 6-axis Processed Angle Data                                      */
 		SmartDashboard.putBoolean(  "IMU_Connected",        DriveTrain.ahrs.isConnected());
@@ -134,5 +142,8 @@ public class DriveTrain extends Subsystem {
 		ahrs.reset();
 	}
 	
+	public static double getSonicDistance() {
+		return sonic.getRangeInches();
+	}
 }
 
