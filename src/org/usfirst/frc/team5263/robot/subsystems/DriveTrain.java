@@ -28,6 +28,7 @@ public class DriveTrain extends Subsystem {
 	public static AHRS ahrs = new AHRS(SPI.Port.kMXP); 
 	public static Ultrasonic sonic = new Ultrasonic(4,5); //input, output on the sensor
 	
+	
 	public DriveTrain() {
 		sonic.setAutomaticMode(true);
 	}
