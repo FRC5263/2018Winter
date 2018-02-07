@@ -14,13 +14,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTo extends Command {
 
-
 	private double encoderTarget;
 	private double direction = 0;
 	private boolean isFinished = false;
 	private double leftCorrection = 0.0;
 	private double rightCorrection = 0.0;
-
+	
 	double driveDistanceFeet;
 	double power;
 
@@ -34,7 +33,6 @@ public class DriveTo extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		DriveTrain.resetEncoders();
-		isFinished = false;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -73,12 +71,13 @@ public class DriveTo extends Command {
 	}
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-
 		return isFinished;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		isFinished = false;
+		
 	}
 
 	// Called when another command which requires one or more of the same

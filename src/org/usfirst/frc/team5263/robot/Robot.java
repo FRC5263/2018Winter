@@ -166,9 +166,5 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotPeriodic() {
 //		DriveTrain.putAHRSOnDashboard();
-		SmartDashboard.putNumber("left encoder value", DriveTrain.getLeftEncoder());
-		SmartDashboard.putNumber("right encoder value", DriveTrain.getRightEncoder());
-		SmartDashboard.putNumber("left encoder inches", DriveTrain.getLeftEncoderInches());
-		SmartDashboard.putNumber("right encoder inches", DriveTrain.getRightEncoderInches());
 	}
 }
