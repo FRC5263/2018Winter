@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
+import org.usfirst.frc.team5263.robot.commands.DriveToShape;
 import org.usfirst.frc.team5263.robot.commands.DriverOperated;
 import org.usfirst.frc.team5263.robot.commands.RotatePID;
 import org.usfirst.frc.team5263.robot.commands.Rotation;
@@ -59,6 +60,7 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		
 		m_chooser.addDefault("Default Auto", new TestPiston());
+		m_chooser.addDefault("DriveToShape", new DriveToShape());
 		m_chooser.addObject("Rotate to", new Rotation(90));
 		m_chooser.addObject("Drive To", new DriveTo(4, .4));
 		m_chooser.addObject("Wait", new Wait(5));
