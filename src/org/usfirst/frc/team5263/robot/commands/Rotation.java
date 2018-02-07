@@ -19,14 +19,14 @@ public class Rotation extends Command {
 	double current;
 	double difference;
 	double angle;
-	
+	double power;
 	boolean isFinished = false;
 
-	public Rotation(double angle) {
+	public Rotation(double angle, double power) {
 		requires(Robot.myDrive);
 		setTimeout(.5);
 		this.angle = angle;
-		
+		this.power = power;
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 
@@ -49,11 +49,11 @@ public class Rotation extends Command {
 		difference = angle - current;
 		if(difference > 0){
 			// Method below means turn right
-			DriveTrain.drive(.4,-.4);
+			DriveTrain.drive(power,-power);
 		}
 		if(difference < 0){
 			// Method below means turn left
-			DriveTrain.drive(-.4,.4);
+			DriveTrain.drive(-power, power);
 			
 		}
 		if(Math.abs(difference) < 5){ 

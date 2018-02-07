@@ -9,16 +9,30 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class DriveToShape extends CommandGroup {
 
-    public DriveToShape() {
+	double turnPower;
+	double drivePower;
+	double degrees;
+	double feet;
+    public DriveToShape(double degrees, double turnPower, double feet, double drivePower) {
     	
-    	addSequential(new DriveTo(4, .4));
-    	addSequential(new Rotation(90));
-    	addSequential(new DriveTo(4, .4) );
-    	addSequential(new Rotation(90));
-    	addSequential(new DriveTo(4, .4));
-    	addSequential(new Rotation(90));
-    	addSequential(new DriveTo(4, .4));
-    	addSequential(new Rotation(90));
+    	this.drivePower = drivePower;
+    	this.turnPower = turnPower;
+    	this.degrees = degrees;
+    	this.feet = feet;
+    	
+    	addSequential(new DriveTo(feet, drivePower));
+    	addSequential(new Rotation(degrees, turnPower));
+    	
+    	
+    	addSequential(new DriveTo(feet, drivePower));
+    	addSequential(new Rotation(degrees, turnPower));
+    	
+    	addSequential(new DriveTo(feet, drivePower));
+    	addSequential(new Rotation(degrees, turnPower));
+    	
+    	addSequential(new DriveTo(feet, drivePower));
+    	addSequential(new Rotation(degrees, turnPower));
+    	
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
