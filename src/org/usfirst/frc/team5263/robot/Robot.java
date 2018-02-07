@@ -60,7 +60,9 @@ public class Robot extends TimedRobot {
 		
 		m_chooser.addDefault("Default Auto", new TestPiston());
 		m_chooser.addObject("Rotate to", new Rotation(90));
-		m_chooser.addObject("Drive To", new DriveTo(4, .4));
+		m_chooser.addObject("Drive To 10 ft, .6 power", new DriveTo(10, .6));
+		m_chooser.addObject("Drive To -5 ft, .8 power", new DriveTo(-5, .8));
+		m_chooser.addObject("Drive To 6 ft, .3 power", new DriveTo(6, .3));
 		m_chooser.addObject("Wait", new Wait(5));
 		m_chooser.addObject("RotatePID", new RotatePID(90));
 		m_chooser.addObject("Vision", new VisionDrive(640, 480));
@@ -161,6 +163,10 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotPeriodic() {
-		DriveTrain.putAHRSOnDashboard();
+//		DriveTrain.putAHRSOnDashboard();
+		SmartDashboard.putNumber("left encoder value", DriveTrain.getLeftEncoder());
+		SmartDashboard.putNumber("right encoder value", DriveTrain.getRightEncoder());
+		SmartDashboard.putNumber("left encoder inches", DriveTrain.getLeftEncoderInches());
+		SmartDashboard.putNumber("right encoder inches", DriveTrain.getRightEncoderInches());
 	}
 }

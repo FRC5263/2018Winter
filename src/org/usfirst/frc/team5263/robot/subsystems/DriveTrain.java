@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5263.robot.subsystems;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -18,14 +17,13 @@ public class DriveTrain extends Subsystem {
 	
 	//objects
 	private static DifferentialDrive myRobot = new DifferentialDrive(RobotMap.leftMotor, RobotMap.rightMotor);
-	private static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	private static Encoder LeftEncoder = RobotMap.LeftEncoder;
 	private static Encoder RightEncoder = RobotMap.RightEncoder;
 	public static AHRS ahrs = new AHRS(SPI.Port.kMXP); 
 	private static Ultrasonic sonic = new Ultrasonic(4,5); //input, output on the sensor
 	
 	//constants
-	private final static double wheelDiameterInches = 4.0;
+	private final static double wheelDiameterInches = 6.0;
 	private final static double encoderClicksPerRevolution = 360;
 	
 	
@@ -60,6 +58,11 @@ public class DriveTrain extends Subsystem {
 	
 	public static double getRightEncoderInches() {
 		return getRightEncoder() * (1 / encoderClicksPerRevolution) * (Math.PI * wheelDiameterInches);
+	}
+	
+	public static void resetEncoders() {
+		LeftEncoder.reset();
+		RightEncoder.reset();
 	}
 	
 	public static void drive(double leftPower, double rightPower) {
