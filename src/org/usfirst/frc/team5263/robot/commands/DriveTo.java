@@ -38,11 +38,6 @@ public class DriveTo extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 
-		SmartDashboard.putNumber("encoder Target:", encoderTarget);
-		SmartDashboard.putNumber("Left Encoder Inches", DriveTrain.getLeftEncoderInches());
-		SmartDashboard.putNumber("Right Encoder Inches", DriveTrain.getRightEncoderInches());
-		SmartDashboard.putNumber("Direction", direction);
-
 		//Converts Feet to inches values
 		encoderTarget = driveDistanceFeet * 12;
 		// if target is negative, target is negative

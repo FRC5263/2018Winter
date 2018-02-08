@@ -77,6 +77,14 @@ public class DriveTrain extends Subsystem {
 		return sonic.getRangeInches() - ultrasonicOffset;
 	}
 	
+	public static void displayData() {
+//		putAHRSOnDashboard();
+		SmartDashboard.putNumber("Ultrasonic Distance in inches    ", getSonicDistance());
+		SmartDashboard.putNumber("Left Encoder Distance in inches  ", getLeftEncoderInches());
+		SmartDashboard.putNumber("Right Encoder Distance in inches ", getRightEncoderInches());
+		SmartDashboard.putNumber("Gyroscopic angle in degrees      ", getRotation());
+	}
+	
 	public static void putAHRSOnDashboard() {
 		/* Display 6-axis Processed Angle Data                                      */
 		SmartDashboard.putBoolean(  "IMU_Connected",        DriveTrain.ahrs.isConnected());

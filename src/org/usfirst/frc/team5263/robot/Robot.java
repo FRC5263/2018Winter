@@ -167,7 +167,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotPeriodic() {
-//		DriveTrain.putAHRSOnDashboard();
-    	SmartDashboard.putNumber("sonic distance", DriveTrain.getSonicDistance());
+		DriveTrain.displayData();
 	}
 }
