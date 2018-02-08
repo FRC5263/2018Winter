@@ -33,7 +33,6 @@ public class DriveUntil extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
 //    	double difference = distance - DriveTrain.getSonicDistance();
-    	SmartDashboard.putNumber("sonic distance", DriveTrain.getSonicDistance());
     	if(DriveTrain.getSonicDistance() > distance) {
     		DriveTrain.drive(power + leftCorrection, power + rightCorrection);
     	} else {
