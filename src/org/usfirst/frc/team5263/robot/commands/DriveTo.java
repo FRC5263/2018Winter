@@ -19,20 +19,31 @@ public class DriveTo extends Command {
 	private boolean isFinished = false;
 	private double leftCorrection = 0.0;
 	private double rightCorrection = 0.0;
-	
+	private boolean driveByAngle = false;
+	private double initialAngle;
 	double driveDistanceFeet;
 	double power;
 
-	public DriveTo(double driveDistanceFeet, double power) {
+	public DriveTo(double driveDistanceFeet, double power, double angle) {
 		requires(Robot.myDrive);
-
 		this.driveDistanceFeet = driveDistanceFeet;
 		this.power = power;
+		this.initialAngle = angle;
+		this.driveByAngle = true;
+	}
+	public DriveTo(double driveDistanceFeet, double power) {
+		requires(Robot.myDrive);
+		this.driveDistanceFeet = driveDistanceFeet;
+		this.power = power;
+		this.driveByAngle = false;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		DriveTrain.resetEncoders();
+		if(!driveByAngle) {
+			initialAngle = DriveTrain.getRotation();
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -60,8 +71,12 @@ public class DriveTo extends Command {
 			isFinished = true;
 		}
 
-		leftCorrection = -1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
-		rightCorrection = 1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
+//		leftCorrection = -1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
+//		rightCorrection = 1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
+		
+		leftCorrection = -1 * ((DriveTrain.getRotation() - initialAngle) / 25) ;
+		rightCorrection = 1 * ((DriveTrain.getRotation() - initialAngle) / 25) ;
+
 
 	}
 	// Make this return true when this Command no longer needs to run execute()
