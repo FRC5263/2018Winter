@@ -13,26 +13,27 @@ public class DriveToShape extends CommandGroup {
 	double drivePower;
 	double degrees;
 	double feet;
-    public DriveToShape(double degrees, double turnPower, double feet, double drivePower) {
+    public DriveToShape(double turnPower, double drivePower) {
     	
     	this.drivePower = drivePower;
     	this.turnPower = turnPower;
-    	this.degrees = degrees;
-    	this.feet = feet;
     	
-    	addSequential(new DriveTo(feet, drivePower));
-    	addSequential(new Rotation(degrees, turnPower));
+    	addSequential(new DriveTo(4, drivePower));
+    	addSequential(new Wait(1));
+    	addSequential(new Rotation(90, turnPower));
     	
     	
-    	addSequential(new DriveTo(feet, drivePower));
-    	addSequential(new Rotation(degrees, turnPower));
+    	addSequential(new DriveTo(3, drivePower));
+    	addSequential(new Wait(1));
+    	addSequential(new Rotation(0, turnPower));
     	
-    	addSequential(new DriveTo(feet, drivePower));
-    	addSequential(new Rotation(degrees, turnPower));
+    	addSequential(new DriveTo(6, drivePower));
+    	addSequential(new Wait(1));
+    	addSequential(new Rotation(-90, turnPower));
     	
-    	addSequential(new DriveTo(feet, drivePower));
-    	addSequential(new Rotation(degrees, turnPower));
-    	
+    	addSequential(new DriveTo(4, drivePower));
+    	addSequential(new Wait(1));
+    	addSequential(new Rotation(0, turnPower));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

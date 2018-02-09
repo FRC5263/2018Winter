@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5263.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import java.lang.*;
 import java.time.temporal.IsoFields;
 
@@ -21,14 +23,17 @@ public class Wait extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	isFinished = false;
     }
     
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double currentTime = System.currentTimeMillis();
-    	if (currentTime != waitSeconds){
-    		
-    	}else{
+    	if (currentTime < waitSeconds){
+    		//do nothing
+    		SmartDashboard.putNumber("Waiting? ", currentTime);
+    	}
+    	if(currentTime > waitSeconds){
     		System.out.println("Done");
     		isFinished = true;
     	}
