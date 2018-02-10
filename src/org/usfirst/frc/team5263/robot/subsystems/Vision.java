@@ -23,8 +23,7 @@ public class Vision extends Subsystem {
     }
     
     public static void setCamAxisY(double rotation) {
-    	camAxisY.set(rotation);
+    	camAxisY.set(-rotation);
     }
     
 }
-
