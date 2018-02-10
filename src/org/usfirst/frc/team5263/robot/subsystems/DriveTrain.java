@@ -25,7 +25,7 @@ public class DriveTrain extends Subsystem {
 	//constants
 	private final static double wheelDiameterInches = 6.0;
 	private final static double encoderClicksPerRevolution = 360;
-	
+	private final static double ultrasonicOffset = 3; //inches the ultrasonic is mounted from the front of the robot
 	
 	public DriveTrain() {
 		sonic.setAutomaticMode(true);
@@ -74,7 +74,15 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public static double getSonicDistance() {
-		return sonic.getRangeInches();
+		return sonic.getRangeInches() - ultrasonicOffset;
+	}
+	
+	public static void displayData() {
+//		putAHRSOnDashboard();
+		SmartDashboard.putNumber("Ultrasonic Distance in inches    ", getSonicDistance());
+		SmartDashboard.putNumber("Left Encoder Distance in inches  ", getLeftEncoderInches());
+		SmartDashboard.putNumber("Right Encoder Distance in inches ", getRightEncoderInches());
+		SmartDashboard.putNumber("Gyroscopic angle in degrees      ", getRotation());
 	}
 	
 	public static void putAHRSOnDashboard() {
