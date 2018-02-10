@@ -15,8 +15,7 @@ public class Wait extends Command {
     public Wait(double waitSeconds) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	
-    	this.waitSeconds = waitSeconds;
+    	setTimeout(waitSeconds);
     }
 
     // Called just before this Command runs the first time
@@ -25,20 +24,13 @@ public class Wait extends Command {
     
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double currentTime = System.currentTimeMillis();
-    	if (currentTime != waitSeconds){
-    		
-    	}else{
-    		System.out.println("Done");
-    		isFinished = true;
-    	}
     }
 
 
 
 	// Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isFinished;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
