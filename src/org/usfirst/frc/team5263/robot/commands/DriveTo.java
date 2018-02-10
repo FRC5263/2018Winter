@@ -75,8 +75,8 @@ public class DriveTo extends Command {
 //		leftCorrection = -1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
 //		rightCorrection = 1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
 		
-		leftCorrection = -1 * ((DriveTrain.getRotation() - initialAngle) / 25) ;
-		rightCorrection = 1 * ((DriveTrain.getRotation() - initialAngle) / 25) ;
+		leftCorrection = -1 * ((DriveTrain.getRotation() - initialAngle) / 100) ;
+		rightCorrection = 1 * ((DriveTrain.getRotation() - initialAngle) / 100) ;
 
 
 	}
