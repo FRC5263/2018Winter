@@ -36,7 +36,7 @@ public class Rotation extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-	DriveTrain.reset();
+	// DriveTrain.reset();
 	isFinished = false;
 	}
 
@@ -69,6 +69,7 @@ public class Rotation extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		System.out.println("Rotation ran");
 		return isFinished;
 	}
 

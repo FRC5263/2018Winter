@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5263.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import java.lang.*;
 import java.time.temporal.IsoFields;
 
@@ -8,9 +10,6 @@ import java.time.temporal.IsoFields;
  *
  */
 public class Wait extends Command {
-
-	private static boolean isFinished = false;
-	double waitSeconds;
 	
     public Wait(double waitSeconds) {
         // Use requires() here to declare subsystem dependencies
@@ -35,6 +34,7 @@ public class Wait extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	System.out.println("finished Wait command");
     }
 
     // Called when another command which requires one or more of the same
