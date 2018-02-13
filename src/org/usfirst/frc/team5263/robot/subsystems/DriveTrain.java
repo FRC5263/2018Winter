@@ -19,7 +19,9 @@ public class DriveTrain extends Subsystem {
 	private static DifferentialDrive myRobot = new DifferentialDrive(RobotMap.leftMotor, RobotMap.rightMotor);
 	private static Encoder LeftEncoder = RobotMap.LeftEncoder;
 	private static Encoder RightEncoder = RobotMap.RightEncoder;
-	public static AHRS ahrs = new AHRS(SPI.Port.kMXP); 
+	
+	private final static int HZ = 60;
+	public static AHRS ahrs = new AHRS(SPI.Port.kMXP, (byte)HZ);
 	private static Ultrasonic sonic = new Ultrasonic(4,5); //input, output on the sensor
 	
 	//constants
@@ -84,7 +86,7 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Right Encoder Distance in inches ", getRightEncoderInches());
 		SmartDashboard.putNumber("Gyroscopic angle in degrees      ", getRotation());
 		
-		double rate = 60 * (DriveTrain.ahrs.getRate());
+		double rate = HZ * (DriveTrain.ahrs.getRate());
 		
 		SmartDashboard.putNumber("PID rate", rate);
 	}

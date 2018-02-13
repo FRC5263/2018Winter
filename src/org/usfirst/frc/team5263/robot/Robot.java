@@ -69,7 +69,7 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("DriveUntil 3 ft", new DriveUntil(100, .6));
 		m_chooser.addObject("Wait", new Wait(5));
 		m_chooser.addObject("RotatePID", new RotatePID(90));
-		m_chooser.addObject("Vision", new VisionDrive(640, 480));
+		m_chooser.addObject("Vision", new VisionDrive());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
