@@ -83,6 +83,10 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Left Encoder Distance in inches  ", getLeftEncoderInches());
 		SmartDashboard.putNumber("Right Encoder Distance in inches ", getRightEncoderInches());
 		SmartDashboard.putNumber("Gyroscopic angle in degrees      ", getRotation());
+		
+		double rate = 60 * (DriveTrain.ahrs.getRate());
+		
+		SmartDashboard.putNumber("PID rate", rate);
 	}
 	
 	public static void putAHRSOnDashboard() {
