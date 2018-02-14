@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5263.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,6 +16,14 @@ import com.kauailabs.navx.frc.AHRS;
  *
  */
 public class DriveTrain extends Subsystem {
+	
+	//ROTATION PID #TEMPORARY
+	public static PIDController turnController;
+	static final double kP = 0.03; 		
+	static final double kI = 0.00;
+	static final double kD = 0.00;
+	static final double kF = 0.00;
+	static final double kToleranceDegrees = 2.0f;
 	
 	//objects
 	private static DifferentialDrive myRobot = new DifferentialDrive(RobotMap.leftMotor, RobotMap.rightMotor);
@@ -29,6 +39,17 @@ public class DriveTrain extends Subsystem {
 	
 	public DriveTrain() {
 		sonic.setAutomaticMode(true);
+		//ROTATION PID #TEMP
+		turnController = new PIDController(kP, kI, kD, kF, ahrs,  new PIDOutput() {
+			@Override
+			public void pidWrite(double output) {
+				DriveTrain.drive(output, -output);
+			}
+		});
+//        turnController.setInputRange(-180.0f,  180.0f); 
+//        turnController.setContinuous(true);
+        turnController.setOutputRange(-1.0, 1.0);
+        turnController.setAbsoluteTolerance(kToleranceDegrees);
 	}
 	
     public void initDefaultCommand() {
@@ -80,9 +101,11 @@ public class DriveTrain extends Subsystem {
 	public static void displayData() {
 //		putAHRSOnDashboard();
 		SmartDashboard.putNumber("Ultrasonic Distance in inches    ", getSonicDistance());
-		SmartDashboard.putNumber("Left Encoder Distance in inches  ", getLeftEncoderInches());
-		SmartDashboard.putNumber("Right Encoder Distance in inches ", getRightEncoderInches());
+//		SmartDashboard.putNumber("Left Encoder Distance in inches  ", getLeftEncoderInches());
+//		SmartDashboard.putNumber("Right Encoder Distance in inches ", getRightEncoderInches());
 		SmartDashboard.putNumber("Gyroscopic angle in degrees      ", getRotation());
+		SmartDashboard.putNumber("left encoder val", LeftEncoder.get());
+		SmartDashboard.putNumber("right encoder val", RightEncoder.get());
 	}
 	
 	public static void putAHRSOnDashboard() {
