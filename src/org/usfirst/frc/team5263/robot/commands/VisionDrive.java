@@ -16,15 +16,13 @@ public class VisionDrive extends Command {
 	private UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	private NetworkTable tables;
 	
-	private int camHeight;
-	private int camWidth;
+	private int camHeight = 360;
+	private int camWidth = 480;
 	
 	
-    public VisionDrive(int camHeight, int camWidth) {
+    public VisionDrive() {
         requires(Robot.myVision);
-        
-        this.camHeight = camHeight;
-        this.camWidth = camWidth;
+       
     }
 
     // Called just before this Command runs the first time
