@@ -14,11 +14,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class VisionDrive extends Command {
 
 	private UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-	private NetworkTable tables;
+	
+	@SuppressWarnings("deprecation")
+	private NetworkTable tables = NetworkTable.getTable("GRIP/grip");
 	
 	private int camHeight = 360;
 	private int camWidth = 480;
 	
+	double[] area;
+	double[] centerXS;
+	double[] centerYS;
+	double[] widthS;
+	double[] centerXarray;
+	double[] widtharray;
 	
     public VisionDrive() {
         requires(Robot.myVision);
@@ -26,13 +34,22 @@ public class VisionDrive extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("deprecation")
+	protected void initialize() {
     	camera.setResolution(camWidth, camHeight);
     	
+    	area = tables.getNumberArray("area", (double[])null);
+    	
+    	centerXS = tables.getNumberArray("centerX", (double[])null);
+		centerYS = tables.getNumberArray("centerY", (double[])null);
+		widthS = tables.getNumberArray("width", (double[])null);
+		centerXarray = new double[1];
+		widtharray = new double[1];
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
