@@ -20,8 +20,8 @@ public class DriveTrain extends Subsystem {
 	//ROTATION PID #TEMPORARY
 	public static PIDController turnController;
 	static final double kP = 0.03; 		
-	static final double kI = 0.00;
-	static final double kD = 0.00;
+	static final double kI = 1.0E-5 ;
+	static final double kD = 0.1;
 	static final double kF = 0.00;
 	static final double kToleranceDegrees = 2.0f;
 	
