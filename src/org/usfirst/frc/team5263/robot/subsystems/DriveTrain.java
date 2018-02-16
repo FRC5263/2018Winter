@@ -3,6 +3,8 @@ package org.usfirst.frc.team5263.robot.subsystems;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -43,7 +45,25 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		sonic.setAutomaticMode(true);
 		//ROTATION PID #TEMP
-		turnController = new PIDController(kP, kI, kD, kF, ahrs,  new PIDOutput() {
+		turnController = new PIDController(kP, kI, kD, kF, new PIDSource() {
+			
+			@Override
+			public void setPIDSourceType(PIDSourceType pidSource) {
+				
+			} 
+			
+			@Override
+			public double pidGet() {
+				// TODO Auto-generated method stub
+				return getRotation();
+			}
+			
+			@Override
+			public PIDSourceType getPIDSourceType() {
+				// TODO Auto-generated method stub
+				return PIDSourceType.kDisplacement;
+			}
+		},  new PIDOutput() {
 			@Override
 			public void pidWrite(double output) {
 				DriveTrain.drive(output, -output);
@@ -112,7 +132,7 @@ public class DriveTrain extends Subsystem {
 		
 	
 		
-		SmartDashboard.putNumber("PID rate", rate);
+//		SmartDashboard.putNumber("PID rate", rate);
 	}
 	
 	public static void putAHRSOnDashboard() {
