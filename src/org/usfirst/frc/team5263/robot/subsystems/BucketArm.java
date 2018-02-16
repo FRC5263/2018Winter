@@ -21,11 +21,11 @@ public class BucketArm extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 	
-	public void driveMotor(double power) {
+	public static void driveMotor(double power) {
 		liftMotor.set(power);
 	}
 	
-	public boolean isLimitClosed() {
+	public static boolean isLimitClosed() {
 		return limitSwitch.get();
 	}
     

@@ -11,13 +11,9 @@ package org.usfirst.frc.team5263.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-
-import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.DriveToShape;
 import org.usfirst.frc.team5263.robot.commands.DriveUntil;
@@ -26,6 +22,8 @@ import org.usfirst.frc.team5263.robot.commands.RotatePID;
 import org.usfirst.frc.team5263.robot.commands.Rotation;
 import org.usfirst.frc.team5263.robot.commands.VisionDrive;
 import org.usfirst.frc.team5263.robot.commands.Wait;
+import org.usfirst.frc.team5263.robot.subsystems.BucketArm;
+import org.usfirst.frc.team5263.robot.subsystems.CubeIntake;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 //import org.usfirst.frc.team5263.robot.subsystems.Pneumatics;
 //import org.usfirst.frc.team5263.robot.subsystems.ExampleSubsystem;
@@ -43,6 +41,8 @@ public class Robot extends TimedRobot {
 //			= new ExampleSubsystem();
 	public static final DriveTrain myDrive = new DriveTrain();
 	public static final Vision myVision = new Vision();
+	public static final BucketArm myBucketArm = new BucketArm();
+	public static final CubeIntake myCubeIntake = new CubeIntake();
 	
 	public static OI m_oi;
 	Command teleop = new DriverOperated();
