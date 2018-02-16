@@ -8,7 +8,6 @@
 
 package org.usfirst.frc.team5263.robot;
 
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -25,7 +24,6 @@ import org.usfirst.frc.team5263.robot.commands.DriveUntil;
 import org.usfirst.frc.team5263.robot.commands.DriverOperated;
 import org.usfirst.frc.team5263.robot.commands.RotatePID;
 import org.usfirst.frc.team5263.robot.commands.Rotation;
-import org.usfirst.frc.team5263.robot.commands.TestPiston;
 import org.usfirst.frc.team5263.robot.commands.VisionDrive;
 import org.usfirst.frc.team5263.robot.commands.Wait;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
@@ -43,7 +41,6 @@ import org.usfirst.frc.team5263.robot.subsystems.Vision;
 public class Robot extends TimedRobot {
 //	public static final ExampleSubsystem kExampleSubsystem
 //			= new ExampleSubsystem();
-//	public static final Pneumatics myPneumatics = new Pneumatics();
 	public static final DriveTrain myDrive = new DriveTrain();
 	public static final Vision myVision = new Vision();
 	
@@ -61,7 +58,7 @@ public class Robot extends TimedRobot {
 		
 		m_oi = new OI();
 		
-		m_chooser.addDefault("Default Auto", new TestPiston());
+		m_chooser.addDefault("Default Auto", new Wait(100));
 		m_chooser.addObject("DriveToShape", new DriveToShape(.4, .4));
 		m_chooser.addObject("Rotate to", new Rotation(90, .4));
 		m_chooser.addObject("Drive To 10 ft, .6 power", new DriveTo(10, .6));
