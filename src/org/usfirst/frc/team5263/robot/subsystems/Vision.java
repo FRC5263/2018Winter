@@ -2,6 +2,7 @@ package org.usfirst.frc.team5263.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  *
@@ -12,6 +13,9 @@ public class Vision extends Subsystem {
     // here. Call these from Commands.
 	private static Servo camAxisX = new Servo(2);
 	private static Servo camAxisY = new Servo(3);
+	
+	@SuppressWarnings("deprecation")
+	NetworkTable tables;
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

@@ -22,8 +22,8 @@ public class DriveTrain extends Subsystem {
 	//ROTATION PID #TEMPORARY
 	public static PIDController turnController;
 	static final double kP = 0.03; 		
-	static final double kI = 0.00;
-	static final double kD = 0.00;
+	static final double kI = 1.0E-5 ;
+	static final double kD = 0.1;
 	static final double kF = 0.00;
 	static final double kToleranceDegrees = 2.0f;
 	
@@ -40,7 +40,7 @@ public class DriveTrain extends Subsystem {
 	private final static double wheelDiameterInches = 6.0;
 	private final static double encoderClicksPerRevolution = 360;
 	private final static double ultrasonicOffset = 3; //inches the ultrasonic is mounted from the front of the robot
-	double rate = HZ * (DriveTrain.ahrs.getRate());
+	static double rate = HZ * (DriveTrain.ahrs.getRate());
 	
 	public DriveTrain() {
 		sonic.setAutomaticMode(true);

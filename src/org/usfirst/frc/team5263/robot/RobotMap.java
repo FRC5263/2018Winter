@@ -10,6 +10,7 @@ package org.usfirst.frc.team5263.robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;;
@@ -27,15 +28,21 @@ public class RobotMap {
 	private static final int leftEncoderChannelB = 1;
 	private static final int rightEncoderChannelA = 2;
 	private static final int rightEncoderChannelB = 3;
-	
+	private static final int armEncoderChannelA = 4;
+	private static final int armEncoderChannelB = 5;
 	//Channel info for motor
-	private static final int leftTalonMotor = 0;
-	private static final int rightTalonMotor = 1;
+	private static final int leftTalonMotorChannel = 0;
+	private static final int rightTalonMotorChannel = 1;
+	private static final int armMotorChannel = 4;
+	private static final int intakeMotorLeftChannel = 5;
+	private static final int intakeMotorRightChannel = 6;
 	
 	//Talons and such
-	public static final Talon leftMotor = new Talon(leftTalonMotor);
-	public static final Talon rightMotor = new Talon(rightTalonMotor);
-	
+	public static final Talon leftMotor = new Talon(leftTalonMotorChannel);
+	public static final Talon rightMotor = new Talon(rightTalonMotorChannel);
+	public static final Talon ArmMotor = new Talon (armMotorChannel);
+	public static final Victor intakeMotorLeft = new Victor (intakeMotorLeftChannel);
+	public static final Victor intakeMotorRight = new Victor (intakeMotorRightChannel);
 	
 	//pneumatic channel variables
 	private static final int pistonSolenoidForwardChannel = 0;
@@ -46,4 +53,5 @@ public class RobotMap {
 //	public static DifferentialDrive myRobot = new DifferentialDrive(leftMotor, rightMotor);
 	public static Encoder LeftEncoder = new Encoder(leftEncoderChannelA, leftEncoderChannelB);
 	public static Encoder RightEncoder = new Encoder(rightEncoderChannelA, rightEncoderChannelB);
+	public static Encoder ArmEncoder = new Encoder (armEncoderChannelA, armEncoderChannelB);
 }
