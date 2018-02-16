@@ -23,35 +23,27 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;;
  */
 public class RobotMap {
 	
-	//dio channel variables
+	//DIO channel variables
 	private static final int leftEncoderChannelA = 0;
 	private static final int leftEncoderChannelB = 1;
 	private static final int rightEncoderChannelA = 2;
 	private static final int rightEncoderChannelB = 3;
-	private static final int armEncoderChannelA = 4;
-	private static final int armEncoderChannelB = 5;
-	//Channel info for motor
+	
+    public static final int limitSwitchChannel = 0; // change;
+	
+	//PWM channel variables
+    	//for drive train
 	private static final int leftTalonMotorChannel = 0;
 	private static final int rightTalonMotorChannel = 1;
-	private static final int armMotorChannel = 4;
-	private static final int intakeMotorLeftChannel = 5;
-	private static final int intakeMotorRightChannel = 6;
-	
-	//Talons and such
-	public static final Talon leftMotor = new Talon(leftTalonMotorChannel);
-	public static final Talon rightMotor = new Talon(rightTalonMotorChannel);
-	public static final Talon ArmMotor = new Talon (armMotorChannel);
-	public static final Victor intakeMotorLeft = new Victor (intakeMotorLeftChannel);
-	public static final Victor intakeMotorRight = new Victor (intakeMotorRightChannel);
-	
-	//pneumatic channel variables
-	private static final int pistonSolenoidForwardChannel = 0;
-	private static final int pistonSolenoidReverseChannel = 1;
+		//for cube intake
+	public static final int intakeMotorLeftChannel = 5;
+	public static final int intakeMotorRightChannel = 6;
+		//for bucket arm
+	public static final int liftMotorChannel = 0; //change
 	
 	//objects
-//	public static DoubleSolenoid pistonSolenoid = new DoubleSolenoid(RobotMap.pistonSolenoidForwardChannel, RobotMap.pistonSolenoidReverseChannel); //forward channel, reverse channel 
-//	public static DifferentialDrive myRobot = new DifferentialDrive(leftMotor, rightMotor);
 	public static Encoder LeftEncoder = new Encoder(leftEncoderChannelA, leftEncoderChannelB);
 	public static Encoder RightEncoder = new Encoder(rightEncoderChannelA, rightEncoderChannelB);
-	public static Encoder ArmEncoder = new Encoder (armEncoderChannelA, armEncoderChannelB);
+	public static final Talon leftMotor = new Talon(leftTalonMotorChannel);
+	public static final Talon rightMotor = new Talon(rightTalonMotorChannel);
 }

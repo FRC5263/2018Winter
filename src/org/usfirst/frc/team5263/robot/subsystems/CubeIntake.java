@@ -9,17 +9,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Arm extends Subsystem {
-	private static Encoder armEncoder = RobotMap.ArmEncoder;
-	public static double getArmEncoderInches(){
-		return 0;
-	}
-	private static Victor leftIntakeMotor = RobotMap.intakeMotorLeft;
-	private static Victor rightIntakeMotor = RobotMap.intakeMotorRight;
+public class CubeIntake extends Subsystem {
+
+	//objects
+	private static final Victor intakeMotorLeft = new Victor (RobotMap.intakeMotorLeftChannel);
+	private static final Victor intakeMotorRight = new Victor (RobotMap.intakeMotorRightChannel);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    public static void driveMotors(double power) {
+    	intakeMotorLeft.set(power);
+    	intakeMotorRight.set(power);
+    }
+    
 }
 
