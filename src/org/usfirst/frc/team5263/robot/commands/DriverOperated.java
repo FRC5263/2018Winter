@@ -2,6 +2,7 @@ package org.usfirst.frc.team5263.robot.commands;
 
 import org.usfirst.frc.team5263.robot.OI.ButtonName;
 import org.usfirst.frc.team5263.robot.Robot;
+import org.usfirst.frc.team5263.robot.subsystems.BucketArm;
 import org.usfirst.frc.team5263.robot.subsystems.CubeIntake;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5263.robot.subsystems.Vision;
@@ -45,26 +46,12 @@ public class DriverOperated extends Command {
     	 */
     	DriveTrain.drive(-leftStickSpeed, -rightStickSpeed);
     	
-//    	boolean rightBumper = Robot.m_oi.getButton(ButtonName.RB);
-//    	boolean leftBumper = Robot.m_oi.getButton(ButtonName.LB);
-//    	
-//    	if(rightBumper && leftBumper) {
-//    		//Do nothing
-//    	}else {
-//	    	if(rightBumper) {
-//	    		cubeOut();
-//	    	}
-//	    	if(leftBumper) {
-//	    		cubeIn();
-//	    	}
-//    	}
-    	
     	double rightTrigger = Robot.m_oi.main.getRawAxis(3);
     	double leftTrigger = Robot.m_oi.main.getRawAxis(2);
     	
     	//Check that both triggers aren't being pushed
     	if(rightTrigger != 0 && leftTrigger != 0) {
-    		//Do nothing
+    		CubeIntake.driveMotors(0.0);
     	}else {
     		//When the rightTrigger is held the CubeIntake will push the cube out
     		if(rightTrigger != 0) {
@@ -73,9 +60,8 @@ public class DriverOperated extends Command {
     			CubeIntake.driveMotors(rightTrigger);
     		}else {
     			//Do nothing
+    			CubeIntake.driveMotors(0.0);
     		}
-    		
-    		
     		//When the leftTrigger is held the CubeIntake will pull the cube in
     		if(leftTrigger != 0) {
     			//Take the power of the trigger
@@ -84,8 +70,27 @@ public class DriverOperated extends Command {
     			CubeIntake.driveMotors(-leftTrigger);
     		}else {
     			//Do nothing one last time
+    			CubeIntake.driveMotors(0.0);
     		}
     	}
+    	
+    	//FLIP BUCKET
+    	boolean aButton = Robot.m_oi.getButton(ButtonName.A);
+    	boolean yButton = Robot.m_oi.getButton(ButtonName.Y);
+    	
+    	if(aButton & yButton) {
+    		//We don't want to do anything
+    		BucketArm.driveMotor(0.0);
+    	}else {
+    		if(aButton) {
+    			BucketArm.driveMotor(1.0);
+    		}else if(yButton) {
+    			BucketArm.driveMotor(-1.0);
+    		}else {
+    			BucketArm.driveMotor(0.0);
+    		}
+    	}
+    	
     	
     	switch(Robot.m_oi.main.getPOV()) {
     	case 0: 

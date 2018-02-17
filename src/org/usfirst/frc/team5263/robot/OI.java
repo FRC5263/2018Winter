@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team5263.robot;
 
+import org.usfirst.frc.team5263.robot.commands.FlipBucket;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -61,9 +63,6 @@ public class OI {
 		}
 	}
 	public boolean getButton(ButtonName buttonName) {
-		
-		
-		
 		return main.getRawButton(buttonName.value);
 	}
 	
