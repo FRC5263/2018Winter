@@ -29,7 +29,8 @@ public class RobotMap {
 	private static final int rightEncoderChannelA = 2;
 	private static final int rightEncoderChannelB = 3;
 	
-    public static final int limitSwitchChannel = 0; // change;
+    public static final int upperLimitSwitchChannel = 0; // change;
+    public static final int lowerLimitSwitchChannel = 1; //Also, change
 	
 	//PWM channel variables
     	//for drive train

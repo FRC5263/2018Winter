@@ -13,7 +13,8 @@ public class BucketArm extends Subsystem {
 	
 	//objects
 	private static Victor liftMotor = new Victor(RobotMap.liftMotorChannel);
-	private static DigitalInput limitSwitch = new DigitalInput(RobotMap.limitSwitchChannel);
+	private static DigitalInput upperLimitSwitch = new DigitalInput(RobotMap.upperLimitSwitchChannel);
+	private static DigitalInput lowerLimitSwitch = new DigitalInput(RobotMap.lowerLimitSwitchChannel);
     
 	//methods
 	public void initDefaultCommand() {
@@ -25,10 +26,13 @@ public class BucketArm extends Subsystem {
 		liftMotor.set(power);
 	}
 	
-	public static boolean isLimitClosed() {
-		return limitSwitch.get();
+	public static boolean isUpperLimitClosed() {
+		return upperLimitSwitch.get();
 	}
     
+	public static boolean isLowerLimitClosed() {
+		return lowerLimitSwitch.get();
+	}
     
 }
 

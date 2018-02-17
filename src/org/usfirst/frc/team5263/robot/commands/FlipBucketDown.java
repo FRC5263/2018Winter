@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class FlipBucket extends Command {
+public class FlipBucketDown extends Command {
 
 	private boolean hitSwitch;
 	
-    public FlipBucket() {
+    public FlipBucketDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.myBucketArm);
@@ -24,14 +24,14 @@ public class FlipBucket extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(BucketArm.isUpperLimitClosed() == false) {
+    	if(BucketArm.isLowerLimitClosed() == false) {
     		hitSwitch = false;
     	}
     	
     	if(!hitSwitch) {
     		BucketArm.driveMotor(1.0);
     	}
-    	if(BucketArm.isUpperLimitClosed()) {
+    	if(BucketArm.isLowerLimitClosed()) {
     		hitSwitch = true;
     	}
     
