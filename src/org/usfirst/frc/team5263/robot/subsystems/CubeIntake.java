@@ -20,6 +20,9 @@ public class CubeIntake extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    
+    //Positive - push the cube out
+    //Negative - pull the cube in
     public static void driveMotors(double power) {
     	intakeMotorLeft.set(power);
     	intakeMotorRight.set(power);
