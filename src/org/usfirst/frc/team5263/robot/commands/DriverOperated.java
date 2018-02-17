@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5263.robot.commands;
 
+import org.usfirst.frc.team5263.robot.OI.ButtonName;
 import org.usfirst.frc.team5263.robot.Robot;
+import org.usfirst.frc.team5263.robot.subsystems.CubeIntake;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5263.robot.subsystems.Vision;
 
@@ -42,6 +44,48 @@ public class DriverOperated extends Command {
     	 * Axis 5 - Right Stick Y
     	 */
     	DriveTrain.drive(-leftStickSpeed, -rightStickSpeed);
+    	
+//    	boolean rightBumper = Robot.m_oi.getButton(ButtonName.RB);
+//    	boolean leftBumper = Robot.m_oi.getButton(ButtonName.LB);
+//    	
+//    	if(rightBumper && leftBumper) {
+//    		//Do nothing
+//    	}else {
+//	    	if(rightBumper) {
+//	    		cubeOut();
+//	    	}
+//	    	if(leftBumper) {
+//	    		cubeIn();
+//	    	}
+//    	}
+    	
+    	double rightTrigger = Robot.m_oi.main.getRawAxis(3);
+    	double leftTrigger = Robot.m_oi.main.getRawAxis(2);
+    	
+    	//Check that both triggers aren't being pushed
+    	if(rightTrigger != 0 && leftTrigger != 0) {
+    		//Do nothing
+    	}else {
+    		//When the rightTrigger is held the CubeIntake will push the cube out
+    		if(rightTrigger != 0) {
+    			//Take the power of the trigger
+    			//set that to the speed of the CubeIntake Motors
+    			CubeIntake.driveMotors(rightTrigger);
+    		}else {
+    			//Do nothing
+    		}
+    		
+    		
+    		//When the leftTrigger is held the CubeIntake will pull the cube in
+    		if(leftTrigger != 0) {
+    			//Take the power of the trigger
+    			//set that to the speed of the CubeIntake Motors
+    			//Made negative so the motors pull in
+    			CubeIntake.driveMotors(-leftTrigger);
+    		}else {
+    			//Do nothing one last time
+    		}
+    	}
     	
     	switch(Robot.m_oi.main.getPOV()) {
     	case 0: 
@@ -109,6 +153,17 @@ public class DriverOperated extends Command {
     		camAxisYRotation -= 0.01;
     	}
     }
+    
+    //Push the cube in
+    private void cubeOut() {
+    	CubeIntake.driveMotors(.5);
+    }
+    
+    private void cubeIn() {
+    	CubeIntake.driveMotors(-0.5);
+    }
+    
+    //
     
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

@@ -51,6 +51,22 @@ public class OI {
 	Button buttonX = new JoystickButton(main, 3);
 	Button buttonY = new JoystickButton(main, 4);
 	
+	public enum ButtonName{
+		A(1), B(2), X(3), Y(4), LB(5), RB(6);
+		
+		public final int value;
+		
+		private ButtonName(int value) {
+			this.value = value;
+		}
+	}
+	public boolean getButton(ButtonName buttonName) {
+		
+		
+		
+		return main.getRawButton(buttonName.value);
+	}
+	
 	public OI() {
 		
 	}
