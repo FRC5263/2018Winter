@@ -70,7 +70,8 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Vision", new VisionDrive());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		LiveWindow.add(DriveTrain.turnController);
+		LiveWindow.add(DriveTrain.sharedInstance().turnController);
+		LiveWindow.add(DriveTrain.sharedInstance().driveController);
 		
 		
 	}
@@ -103,7 +104,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		DriveTrain.reset();
+		DriveTrain.sharedInstance().reset();
 		
 		System.out.println("autonomous init");
 		if (m_autonomousCommand != null) {
@@ -168,6 +169,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotPeriodic() {
-		DriveTrain.displayData();
+		DriveTrain.sharedInstance().displayData();
 	}
 }

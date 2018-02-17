@@ -7,14 +7,6 @@
 
 package org.usfirst.frc.team5263.robot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.interfaces.Gyro;;
-
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -23,28 +15,33 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;;
  */
 public class RobotMap {
 	
-	//DIO channel variables
-	private static final int leftEncoderChannelA = 0;
-	private static final int leftEncoderChannelB = 1;
-	private static final int rightEncoderChannelA = 2;
-	private static final int rightEncoderChannelB = 3;
+	//robot type
+	public static final boolean isCompetitionBot = true;
+//	public static final boolean isCompetitionBot = false;
 	
-    public static final int upperLimitSwitchChannel = 0; // change;
-    public static final int lowerLimitSwitchChannel = 1; //Also, change
+	//DIO channel variables
+	public static final int leftEncoderChannelA = 0;
+	public static final int leftEncoderChannelB = 1;
+	public static final int rightEncoderChannelA = 2;
+	public static final int rightEncoderChannelB = 3;
+	public static final int ultrasonicInputChannel = 4;	
+	public static final int ultrasonicOutputChannel = 5;	
+    public static final int upperLimitSwitchChannel = 6; // not connected
+    public static final int lowerLimitSwitchChannel = 7; // not connected 
 	
 	//PWM channel variables
     	//for drive train
-	private static final int leftTalonMotorChannel = 0;
-	private static final int rightTalonMotorChannel = 1;
+    public static final int leftDriveMotorChannel = 0;
+    public static final int rightDriveMotorChannel = 1;
 		//for cube intake
-	public static final int intakeMotorLeftChannel = 5;
-	public static final int intakeMotorRightChannel = 6;
+	public static final int intakeMotorLeftChannel = 2;
+	public static final int intakeMotorRightChannel = 3;
 		//for bucket arm
-	public static final int liftMotorChannel = 0; //change
+	public static final int liftMotorChannel = 4; //change
+		//for camera
+	public static final int cameraXServoChannel = 5;
+	public static final int cameraYServoChannel = 6;
 	
-	//objects
-	public static Encoder LeftEncoder = new Encoder(leftEncoderChannelA, leftEncoderChannelB);
-	public static Encoder RightEncoder = new Encoder(rightEncoderChannelA, rightEncoderChannelB);
-	public static final Talon leftMotor = new Talon(leftTalonMotorChannel);
-	public static final Talon rightMotor = new Talon(rightTalonMotorChannel);
+	
+	
 }

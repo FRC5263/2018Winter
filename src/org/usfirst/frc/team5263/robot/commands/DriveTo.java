@@ -2,12 +2,8 @@ package org.usfirst.frc.team5263.robot.commands;
 
 
 import org.usfirst.frc.team5263.robot.Robot;
-import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
-
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -40,10 +36,10 @@ public class DriveTo extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		DriveTrain.resetEncoders();
+		DriveTrain.sharedInstance().resetEncoders();
 		isFinished = false;
 		if(!driveByAngle) {
-			initialAngle = DriveTrain.getRotation();
+			initialAngle = DriveTrain.sharedInstance().getRotation();
 		}
 	}
 
@@ -65,18 +61,18 @@ public class DriveTo extends Command {
 		//-1 * negative = positive
 
 		//DriveTrain.getLeftEncoder()
-		if(DriveTrain.getLeftEncoderInches()*direction < encoderTarget) {
-			DriveTrain.drive((direction * power) + leftCorrection, (direction * power) + rightCorrection);
+		if(DriveTrain.sharedInstance().getLeftEncoderInches()*direction < encoderTarget) {
+			DriveTrain.sharedInstance().drive((direction * power) + leftCorrection, (direction * power) + rightCorrection);
 		}else {
-			DriveTrain.drive(0.0, 0.0);
+			DriveTrain.sharedInstance().drive(0.0, 0.0);
 			isFinished = true;
 		}
 
 //		leftCorrection = -1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
 //		rightCorrection = 1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
 		
-		leftCorrection = -1 * ((DriveTrain.getRotation() - initialAngle) / 100) ;
-		rightCorrection = 1 * ((DriveTrain.getRotation() - initialAngle) / 100) ;
+		leftCorrection = -1 * ((DriveTrain.sharedInstance().getRotation() - initialAngle) / 100) ;
+		rightCorrection = 1 * ((DriveTrain.sharedInstance().getRotation() - initialAngle) / 100) ;
 
 
 	}

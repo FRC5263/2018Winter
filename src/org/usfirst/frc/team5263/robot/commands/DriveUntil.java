@@ -2,9 +2,7 @@ package org.usfirst.frc.team5263.robot.commands;
 
 import org.usfirst.frc.team5263.robot.Robot;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -27,21 +25,21 @@ public class DriveUntil extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	DriveTrain.resetEncoders();
+    	DriveTrain.sharedInstance().resetEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){
-//    	double difference = distance - DriveTrain.getSonicDistance();
-    	if(DriveTrain.getSonicDistance() > distance) {
-    		DriveTrain.drive(power + leftCorrection, power + rightCorrection);
+//    	double difference = distance - DriveTrain.sharedInstance().getSonicDistance();
+    	if(DriveTrain.sharedInstance().getSonicDistance() > distance) {
+    		DriveTrain.sharedInstance().drive(power + leftCorrection, power + rightCorrection);
     	} else {
-    		DriveTrain.drive(0.0, 0.0);
+    		DriveTrain.sharedInstance().drive(0.0, 0.0);
     		isFinished = true;
     	}
     	
-    	leftCorrection = -1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
-		rightCorrection = 1 * ((DriveTrain.getLeftEncoderInches() - DriveTrain.getRightEncoderInches()) / 10);
+    	leftCorrection = -1 * ((DriveTrain.sharedInstance().getLeftEncoderInches() - DriveTrain.sharedInstance().getRightEncoderInches()) / 10);
+		rightCorrection = 1 * ((DriveTrain.sharedInstance().getLeftEncoderInches() - DriveTrain.sharedInstance().getRightEncoderInches()) / 10);
     	
     }
 

@@ -32,12 +32,12 @@ public class RotateRatePID extends Command {
 	public RotateRatePID(double angle) {
 		
 		requires(Robot.myDrive);
-		ahrs = DriveTrain.ahrs;
+		ahrs = DriveTrain.sharedInstance().ahrs;
 		
 		turnController = new PIDController(kP, kI, kD, kF, ahrs,  new PIDOutput() {
 			@Override
 			public void pidWrite(double output) {
-				DriveTrain.drive(output, -output);
+				DriveTrain.sharedInstance().drive(output, -output);
 			}
 		});
 		
@@ -66,12 +66,12 @@ public class RotateRatePID extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		double current = DriveTrain.getRotation();
+		double current = DriveTrain.sharedInstance().getRotation();
 		double difference = degrees - current;
 		
 		if(Math.abs(difference) < 5){ 
 			turnController.disable();
-			DriveTrain.drive(0, 0);
+			DriveTrain.sharedInstance().drive(0, 0);
 			
 			isFinished = true;
 		}

@@ -16,28 +16,31 @@ public class DriveToPID extends Command {
 	private boolean driveByAngle = false;
 	private double initialAngle;
 	double driveDistanceInches;
-	PIDController driveController = DriveTrain.driveController;
+	PIDController driveController;
 
 	public DriveToPID(double driveDistanceInches, double angle) {
-		requires(Robot.myDrive);
-		this.driveDistanceInches = driveDistanceInches;
+		construct(driveDistanceInches);
 		this.initialAngle = angle;
 		this.driveByAngle = true;
 	}
 	public DriveToPID(double driveDistanceInches) {
-		requires(Robot.myDrive);
-		this.driveDistanceInches = driveDistanceInches;
-
+		construct(driveDistanceInches);
 		this.driveByAngle = false;
+	}
+	
+	private void construct(double driveDistanceInches) {
+		requires(Robot.myDrive);
+		driveController = DriveTrain.sharedInstance().driveController;
+		this.driveDistanceInches = driveDistanceInches;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		DriveTrain.resetEncoders();
+		DriveTrain.sharedInstance().resetEncoders();
 		if(!driveByAngle) {
-			initialAngle = DriveTrain.getRotation();
+			initialAngle = DriveTrain.sharedInstance().getRotation();
 		}
-		DriveTrain.driveControllerAngle = initialAngle;
+		DriveTrain.sharedInstance().driveControllerAngle = initialAngle;
 		driveController.setSetpoint(driveDistanceInches);
 		driveController.enable();
 	}

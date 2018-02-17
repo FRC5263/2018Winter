@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RotatePID extends Command {
 
-	PIDController turnController = DriveTrain.turnController;
+	PIDController turnController = DriveTrain.sharedInstance().turnController;
 	double angle;
 	public RotatePID(double angle) {
 		requires(Robot.myDrive);

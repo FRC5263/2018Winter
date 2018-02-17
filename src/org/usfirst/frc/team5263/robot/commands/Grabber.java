@@ -1,8 +1,6 @@
 package org.usfirst.frc.team5263.robot.commands;
 
 import org.usfirst.frc.team5263.robot.Robot;
-import org.usfirst.frc.team5263.robot.subsystems.CubeIntake;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

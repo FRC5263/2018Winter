@@ -6,11 +6,7 @@ import org.usfirst.frc.team5263.robot.subsystems.BucketArm;
 import org.usfirst.frc.team5263.robot.subsystems.CubeIntake;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5263.robot.subsystems.Vision;
-
-import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -44,7 +40,7 @@ public class DriverOperated extends Command {
     	 * Axis 4 - Right Stick X 
     	 * Axis 5 - Right Stick Y
     	 */
-    	DriveTrain.drive(-leftStickSpeed, -rightStickSpeed);
+    	DriveTrain.sharedInstance().drive(-leftStickSpeed, -rightStickSpeed);
     	
     	double rightTrigger = Robot.m_oi.main.getRawAxis(3);
     	double leftTrigger = Robot.m_oi.main.getRawAxis(2);
@@ -160,13 +156,13 @@ public class DriverOperated extends Command {
     }
     
     //Push the cube in
-    private void cubeOut() {
-    	CubeIntake.driveMotors(.5);
-    }
-    
-    private void cubeIn() {
-    	CubeIntake.driveMotors(-0.5);
-    }
+//    private void cubeOut() {
+//    	CubeIntake.driveMotors(.5);
+//    }
+//    
+//    private void cubeIn() {
+//    	CubeIntake.driveMotors(-0.5);
+//    }
     
     //
     

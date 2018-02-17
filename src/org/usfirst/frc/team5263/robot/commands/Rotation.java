@@ -2,12 +2,7 @@ package org.usfirst.frc.team5263.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDSourceType;
-
 import org.usfirst.frc.team5263.robot.Robot;
-import org.usfirst.frc.team5263.robot.RobotMap;
 import org.usfirst.frc.team5263.robot.subsystems.DriveTrain;
 
 
@@ -36,7 +31,7 @@ public class Rotation extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-	// DriveTrain.reset();
+	// DriveTrain.sharedInstance().reset();
 	isFinished = false;
 	}
 
@@ -45,22 +40,22 @@ public class Rotation extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() { 
-		current = DriveTrain.getRotation();
+		current = DriveTrain.sharedInstance().getRotation();
 		difference = angle - current;
 		if(difference > 0){
 			// Method below means turn right
-			DriveTrain.drive(power,-power);
+			DriveTrain.sharedInstance().drive(power,-power);
 		}
 		if(difference < 0){
 			// Method below means turn left
-			DriveTrain.drive(-power, power);
+			DriveTrain.sharedInstance().drive(-power, power);
 			
 		}
 		if(Math.abs(difference) < 5){ 
-			DriveTrain.drive(0, 0);
+			DriveTrain.sharedInstance().drive(0, 0);
 			isFinished = true;
 		}
-		SmartDashboard.putNumber("gyro: ", DriveTrain.getRotation());
+		SmartDashboard.putNumber("gyro: ", DriveTrain.sharedInstance().getRotation());
 
 	}
 
