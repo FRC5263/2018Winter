@@ -21,11 +21,19 @@ public class DriveTrain extends Subsystem {
 	
 	//ROTATION PID #TEMPORARY
 	public static PIDController turnController;
-	static final double kP = 0.03; 		
-	static final double kI = 1.0E-5 ;
-	static final double kD = 0.1;
-	static final double kF = 0.00;
-	static final double kToleranceDegrees = 2.0f;
+	static final double turnControllerkP = 0.03; 		
+	static final double turnControllerkI = 1.0E-5 ;
+	static final double turnControllerkD = 0.1;
+	static final double turnControllerkF = 0.00;
+	static final double turnControllerkToleranceDegrees = 2.0f;
+	
+	//DriveTo PID #TEMPORARY
+		public static PIDController driveController;
+		static final double driveControllerkP = 0.03; 		
+		static final double driveControllerkI = 1.0E-5 ;
+		static final double driveControllerkD = 0.1;
+		static final double driveControllerkF = 0.00;
+		static final double driveControllerkToleranceinches = 2.0f;
 	
 	//objects
 	private static DifferentialDrive myRobot = new DifferentialDrive(RobotMap.leftMotor, RobotMap.rightMotor);
@@ -45,7 +53,7 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		sonic.setAutomaticMode(true);
 		//ROTATION PID #TEMP
-		turnController = new PIDController(kP, kI, kD, kF, new PIDSource() {
+		turnController = new PIDController(turnControllerkP, turnControllerkI, turnControllerkD, turnControllerkF, new PIDSource() {
 			
 			@Override
 			public void setPIDSourceType(PIDSourceType pidSource) {
@@ -72,7 +80,33 @@ public class DriveTrain extends Subsystem {
 //        turnController.setInputRange(-180.0f,  180.0f); 
 //        turnController.setContinuous(true);
         turnController.setOutputRange(-1.0, 1.0);
-        turnController.setAbsoluteTolerance(kToleranceDegrees);
+        turnController.setAbsoluteTolerance(turnControllerkToleranceDegrees);
+	driveController = new PIDController(driveControllerkP, driveControllerkI, driveControllerkD, driveControllerkF, new PIDSource() {
+			
+			@Override
+			public void setPIDSourceType(PIDSourceType pidSource) {
+				
+			} 
+			
+			@Override
+			public double pidGet() {
+				return getLeftEncoderInches();
+			}
+			
+			@Override
+			public PIDSourceType getPIDSourceType() {
+				return PIDSourceType.kDisplacement;
+			}
+		},  new PIDOutput() {
+			@Override
+			public void pidWrite(double output) {
+				DriveTrain.drive(output, -output);
+			}
+		});
+//        turnController.setInputRange(-180.0f,  180.0f); 
+//        turnController.setContinuous(true);
+        driveController.setOutputRange(-1.0, 1.0);
+        driveController.setAbsoluteTolerance(driveControllerkToleranceinches);
 	}
 	
     public void initDefaultCommand() {
