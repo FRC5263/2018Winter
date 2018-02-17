@@ -46,20 +46,15 @@ public class DriverOperated extends Command {
     	double leftTrigger = Robot.m_oi.main.getRawAxis(2);
     	
     	//Check that both triggers aren't being pushed
-    	if(rightTrigger != 0 && leftTrigger != 0) {
+    	if(rightTrigger > 0.1 && leftTrigger > 0.1) {
     		CubeIntake.driveMotors(0.0);
     	}else {
     		//When the rightTrigger is held the CubeIntake will push the cube out
-    		if(rightTrigger != 0) {
+    		if(rightTrigger > .1) {
     			//Take the power of the trigger
     			//set that to the speed of the CubeIntake Motors
     			CubeIntake.driveMotors(rightTrigger);
-    		}else {
-    			//Do nothing
-    			CubeIntake.driveMotors(0.0);
-    		}
-    		//When the leftTrigger is held the CubeIntake will pull the cube in
-    		if(leftTrigger != 0) {
+    		}else if(leftTrigger > .1) {
     			//Take the power of the trigger
     			//set that to the speed of the CubeIntake Motors
     			//Made negative so the motors pull in
@@ -79,9 +74,9 @@ public class DriverOperated extends Command {
     		BucketArm.driveMotor(0.0);
     	}else {
     		if(aButton) {
-    			BucketArm.driveMotor(1.0);
+    			BucketArm.driveMotor(1);
     		}else if(yButton) {
-    			BucketArm.driveMotor(-1.0);
+    			BucketArm.driveMotor(-0.5);
     		}else {
     			BucketArm.driveMotor(0.0);
     		}

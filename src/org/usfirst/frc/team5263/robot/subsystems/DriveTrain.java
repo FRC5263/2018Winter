@@ -41,6 +41,15 @@ public class DriveTrain extends Subsystem {
 	static final double driveControllerkToleranceinches = 2.0f;
 	public double driveControllerAngle = 0;	
 
+
+	//ROTATION RATE PID #TEMPORARY
+	public PIDController turnRateController;
+	static final double turnRateControllerkP = 0.03; 		
+	static final double turnRateControllerkI = 1.0E-5 ;
+	static final double turnRateControllerkD = 0.1;
+	static final double turnRateControllerkF = 0.00;
+	static final double turnRateControllerkToleranceDegrees = 2.0f;
+	
 	//constants
 	private final static double wheelDiameterInches = 6.0;
 	private final static double encoderClicksPerRevolution = 360;
@@ -53,11 +62,8 @@ public class DriveTrain extends Subsystem {
 	public final PWMSpeedController rightMotor;
 	private DifferentialDrive myRobot;
 	public AHRS ahrs = new AHRS(SPI.Port.kMXP);
-	private Ultrasonic sonic = new Ultrasonic(RobotMap.ultrasonicInputChannel,RobotMap.ultrasonicOutputChannel); //input, output on the sensor
-
+	private Ultrasonic sonic; 
 	public DriveTrain() {
-		sonic.setAutomaticMode(true);
-
 		//instantiating objects
 		LeftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB);
 		RightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB);
@@ -69,6 +75,9 @@ public class DriveTrain extends Subsystem {
 			rightMotor = new Talon(RobotMap.rightDriveMotorChannel);			
 		}
 		myRobot = new DifferentialDrive(leftMotor, rightMotor);
+		sonic = new Ultrasonic(RobotMap.ultrasonicInputChannel,RobotMap.ultrasonicOutputChannel);//input, output on the sensor		
+		sonic.setAutomaticMode(true);
+
 
 		//ROTATION PID 
 		turnController = new PIDController(turnControllerkP, turnControllerkI, turnControllerkD, turnControllerkF, new PIDSource() {
@@ -95,8 +104,10 @@ public class DriveTrain extends Subsystem {
 				drive(output, -output);
 			}
 		});
+		turnController.setName("Turn Controller");
 		turnController.setOutputRange(-1.0, 1.0);
 		turnController.setAbsoluteTolerance(turnControllerkToleranceDegrees);
+		//DRIVE PID
 		driveController = new PIDController(driveControllerkP, driveControllerkI, driveControllerkD, driveControllerkF, new PIDSource() {
 
 			@Override
@@ -121,9 +132,40 @@ public class DriveTrain extends Subsystem {
 				drive(output - correction, output + correction);
 			}
 		});
+		driveController.setName("Drive Controller");
 		driveController.setOutputRange(-1.0, 1.0);
 		driveController.setAbsoluteTolerance(driveControllerkToleranceinches);
 
+		//ROTATION RATE PID
+		
+
+		//ROTATION PID 
+		turnRateController = new PIDController(turnRateControllerkP, turnRateControllerkI, turnRateControllerkD, turnRateControllerkF, new PIDSource() {
+
+			@Override
+			public void setPIDSourceType(PIDSourceType pidSource) {
+			} 
+
+			@Override
+			public double pidGet() {
+				// TODO Auto-generated method stub
+				return ahrs.getActualUpdateRate() * ahrs.getRate();
+			}
+
+			@Override
+			public PIDSourceType getPIDSourceType() {
+				// TODO Auto-generated method stub
+				return PIDSourceType.kRate;
+			}
+		},  new PIDOutput() {
+			@Override
+			public void pidWrite(double output) {
+				drive(output, -output);
+			}
+		});
+		turnRateController.setName("Turn Rate Controller");
+		turnRateController.setOutputRange(-1.0, 1.0);
+		turnRateController.setAbsoluteTolerance(turnRateControllerkToleranceDegrees);
 
 	}
 

@@ -39,7 +39,7 @@ import org.usfirst.frc.team5263.robot.subsystems.Vision;
 public class Robot extends TimedRobot {
 //	public static final ExampleSubsystem kExampleSubsystem
 //			= new ExampleSubsystem();
-	public static final DriveTrain myDrive = new DriveTrain();
+	public static final DriveTrain myDrive = DriveTrain.sharedInstance();
 	public static final Vision myVision = new Vision();
 	public static final BucketArm myBucketArm = new BucketArm();
 	public static final CubeIntake myCubeIntake = new CubeIntake();
