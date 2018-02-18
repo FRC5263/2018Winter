@@ -216,18 +216,29 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void drive(double leftPower, double rightPower) {
-		//myRobot.tankDrive(leftPower, rightPower);
-		double leftAdjustedPower = Math.pow(Math.abs(leftPower), (1.0/3.0));
-		double rightAdjustedPower = Math.pow(Math.abs(rightPower), (1.0/3.0));
-		if(leftPower < 0) {
-			leftAdjustedPower *= -1;
-		}
-		if(rightPower < 0) {
-			rightAdjustedPower *= -1;
-		}
-		myRobot.tankDrive(leftAdjustedPower, rightAdjustedPower);
+//		double leftAdjustedPower = Math.pow(Math.abs(leftPower), (1.0/3.0));
+//		double rightAdjustedPower = Math.pow(Math.abs(rightPower), (1.0/3.0));
+//		if(leftPower < 0) {
+//			leftAdjustedPower *= -1;
+//		}
+//		if(rightPower < 0) {
+//			rightAdjustedPower *= -1;
+//		}
+		myRobot.tankDrive(curveInput(leftPower), curveInput(rightPower));
+	}
+	public void arcadeDrive(double speed, double rotation ) {
+		myRobot.arcadeDrive(curveInput(speed), curveInput(rotation));
+		
 	}
 
+	private double curveInput(double input) {
+		double adjustedInput = Math.pow(Math.abs(input), (1.0/3.0));
+		if(input < 0) {
+			adjustedInput *= -1;
+		}
+		return adjustedInput;
+	}
+	
 	public void reset() {
 		ahrs.reset();
 	}

@@ -15,6 +15,7 @@ public class DriverOperated extends Command {
 
 	private double camAxisXRotation = 0.5;
 	private double camAxisYRotation = 0.5;
+	private double speedFactor = 0.6;
 	
     public DriverOperated() {
         // Use requires() here to declare subsystem dependencies
@@ -31,16 +32,15 @@ public class DriverOperated extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double leftStickSpeed = Robot.m_oi.main.getRawAxis(1); // = Math.pow(Robot.m_oi.main.getRawAxis(1), 1/3);
-    	double rightStickSpeed = Robot.m_oi.main.getRawAxis(5); //= Math.pow(Robot.m_oi.main.getRawAxis(5), 1/3);
-    	Robot.m_oi.main.getPOV();
+    	double leftStickX = Robot.m_oi.main.getRawAxis(0) * -1; 
+    	double rightStickY = Robot.m_oi.main.getRawAxis(5) * -1;
+    	DriveTrain.sharedInstance().arcadeDrive(rightStickY * speedFactor, leftStickX * speedFactor);
     	/*
     	 * Axis 0 = Left Stick X
     	 * Axis 1 = Left Stick Y 
     	 * Axis 4 - Right Stick X 
     	 * Axis 5 - Right Stick Y
     	 */
-    	DriveTrain.sharedInstance().drive(-leftStickSpeed, -rightStickSpeed);
     	
     	double rightTrigger = Robot.m_oi.main.getRawAxis(3);
     	double leftTrigger = Robot.m_oi.main.getRawAxis(2);
