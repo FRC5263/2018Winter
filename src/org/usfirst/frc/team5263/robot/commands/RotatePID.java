@@ -15,6 +15,7 @@ public class RotatePID extends Command {
 	public RotatePID(double angle) {
 		requires(Robot.myDrive);
 		this.angle = angle;
+		setTimeout(3);
 	}
 
 	// Called just before this Command runs the first time
@@ -30,7 +31,7 @@ public class RotatePID extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return turnController.onTarget();
+		return turnController.onTarget() || isTimedOut();
 	}
 
 	// Called once after isFinished returns true
