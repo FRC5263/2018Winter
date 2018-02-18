@@ -34,9 +34,18 @@ public class Vision extends Subsystem {
     }
     
     public void VisionPeriodic() {
-    	setCamAxisX(SmartDashboard.getNumber("Cam X value", -1));
-		setCamAxisY(0);
-		SmartDashboard.putNumber("Cam Y value", 0);
+    	setCamAxisX(getSmartDashboardNumber("Cam X Value", .5));
+    	setCamAxisY(getSmartDashboardNumber("Cam Y Value", .5));
     }
     
+    private double getSmartDashboardNumber(String name, double defaultValue) {
+    	double value;
+    	value = SmartDashboard.getNumber(name, -1);
+    	
+    	if(value < 0 || value > 1.0) {
+    		SmartDashboard.putNumber(name, defaultValue);
+			value = defaultValue;
+		}
+    	return value;
+    }
 }
