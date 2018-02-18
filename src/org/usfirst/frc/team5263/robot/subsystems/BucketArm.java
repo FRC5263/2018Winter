@@ -33,6 +33,10 @@ public class BucketArm extends Subsystem {
 	public static boolean isLowerLimitClosed() {
 		return lowerLimitSwitch.get();
 	}
+	
+	public static double currentTime() {
+		return 1.0;
+	} 
     
 }
 

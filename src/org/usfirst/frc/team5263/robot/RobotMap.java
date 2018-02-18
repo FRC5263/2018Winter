@@ -24,8 +24,8 @@ public class RobotMap {
 	public static final int leftEncoderChannelB = 1;
 	public static final int rightEncoderChannelA = 2;
 	public static final int rightEncoderChannelB = 3;
-	public static final int ultrasonicInputChannel = 4;	
-	public static final int ultrasonicOutputChannel = 5;	
+	public static final int ultrasonicInputChannel = 4;	 //
+	public static final int ultrasonicOutputChannel = 5; //
     public static final int upperLimitSwitchChannel = 6; // not connected
     public static final int lowerLimitSwitchChannel = 7; // not connected 
 	
