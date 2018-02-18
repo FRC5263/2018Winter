@@ -32,18 +32,18 @@ public class DriverOperated extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double leftStickX = Robot.m_oi.main.getRawAxis(0); 
-    	double rightStickY = Robot.m_oi.main.getRawAxis(5) * -1;
-    	DriveTrain.sharedInstance().arcadeDrive(leftStickX * speedFactor, rightStickY * speedFactor);
+    	double leftStickY = Robot.m_oi.main.getRawAxis(1) * -1; 
+    	double rightStickX = Robot.m_oi.main.getRawAxis(4);
+    	DriveTrain.sharedInstance().arcadeDrive(leftStickY * speedFactor, rightStickX * speedFactor);
     	/*
     	 * Axis 0 = Left Stick X
     	 * Axis 1 = Left Stick Y 
     	 * Axis 4 - Right Stick X 
     	 * Axis 5 - Right Stick Y
     	 */
-    	
-    	double rightTrigger = Robot.m_oi.main2.getRawAxis(3);
-    	double leftTrigger = Robot.m_oi.main2.getRawAxis(2);
+    	double driveSpeed = 1;
+    	double rightTrigger = Robot.m_oi.main2.getRawAxis(3) * driveSpeed;
+    	double leftTrigger = Robot.m_oi.main2.getRawAxis(2) * driveSpeed;
     	
     	//Check that both triggers aren't being pushed
     	if(rightTrigger > 0.1 && leftTrigger > 0.1) {
@@ -74,7 +74,7 @@ public class DriverOperated extends Command {
     		BucketArm.driveMotor(0.0);
     	}else {
     		if(aButton) {
-    			BucketArm.driveMotor(-0.5);
+    			BucketArm.driveMotor(-0.4);
     		}else if(yButton) {
     			BucketArm.driveMotor(1);
     		}else {
