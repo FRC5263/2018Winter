@@ -64,6 +64,7 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Drive To 10 ft, .6 power", new DriveTo(10, .6));
 		m_chooser.addObject("Drive To -5 ft, .8 power", new DriveTo(-5, .8));
 		m_chooser.addObject("Drive To 6 ft, .3 power", new DriveTo(6, .3));
+		m_chooser.addObject("Drive To 5 ft, .5", new DriveTo(5, .5));
 		m_chooser.addObject("DriveUntil 3 ft", new DriveUntil(100, .6));
 		m_chooser.addObject("Wait", new Wait(5));
 		m_chooser.addObject("RotatePID", new RotatePID(90));
