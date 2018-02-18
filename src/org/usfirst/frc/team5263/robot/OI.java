@@ -70,6 +70,9 @@ public class OI {
 		return main2.getRawButton(buttonName.value);
 	}
 	
+	public boolean getButtonMain(ButtonName buttonName) {
+		return main.getRawButton(buttonName.value);
+	}
 	public OI() {
 		
 	}

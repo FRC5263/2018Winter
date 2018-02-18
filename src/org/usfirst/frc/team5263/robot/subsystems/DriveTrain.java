@@ -255,9 +255,6 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Gyroscopic angle in degrees      ", getRotation());
 		SmartDashboard.putNumber("left encoder val", LeftEncoder.get());
 		SmartDashboard.putNumber("right encoder val", RightEncoder.get());
-
-
-
 		//		SmartDashboard.putNumber("PID rate", rate);
 	}
 

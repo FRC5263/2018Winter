@@ -5,6 +5,7 @@ import org.usfirst.frc.team5263.robot.RobotMap;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -30,6 +31,12 @@ public class Vision extends Subsystem {
     
     public static void setCamAxisY(double rotation) {
     	camAxisY.set(-rotation);
+    }
+    
+    public void VisionPeriodic() {
+    	setCamAxisX(SmartDashboard.getNumber("Cam X value", -1));
+		setCamAxisY(0);
+		SmartDashboard.putNumber("Cam Y value", 0);
     }
     
 }

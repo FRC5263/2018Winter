@@ -27,18 +27,20 @@ public class DriverOperated extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	    Vision.setCamAxisX(0.5);
-	    Vision.setCamAxisY(0.5);
+	    Vision.setCamAxisX(90);
+	    Vision.setCamAxisY(180);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	boolean ButtonX = Robot.m_oi.getButton(ButtonName.X);
-    	boolean ButtonB = Robot.m_oi.getButton(ButtonName.B);
+    	boolean ButtonX = Robot.m_oi.getButtonMain(ButtonName.X);
+    	boolean ButtonB = Robot.m_oi.getButtonMain(ButtonName.B);
     	
     	if(ButtonX) {
+    		System.out.println("Full Speed");
     		speedFactor = 1;
     	}else if(ButtonB){
+    		System.out.println("65%");
     		speedFactor = .65;
     	}
     	
