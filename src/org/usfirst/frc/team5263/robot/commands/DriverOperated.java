@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriverOperated extends Command {
 
-	private double camAxisXRotation = 0.5;
-	private double camAxisYRotation = 0.5;
+	private double camAxisXRotation = 1.0;
+	private double camAxisYRotation = 1.0;
 	
 	private double speedFactor = .65;
 	
@@ -125,6 +125,7 @@ public class DriverOperated extends Command {
     	case 315:
     		decreaseXAxis();
     		increaseYAxis();
+    		break;
     	}
     	
     	Vision.setCamAxisX(camAxisXRotation);
@@ -141,13 +142,13 @@ public class DriverOperated extends Command {
     }
 
     private void increaseXAxis() {
-    	if(camAxisXRotation < 1.0) {
+    	if(camAxisXRotation < 0.99) {
     		camAxisXRotation += 0.01;   
     	}
     }
     
     private void increaseYAxis() {
-    	if(camAxisYRotation < 1.0) {
+    	if(camAxisYRotation < 0.99) {
     		camAxisYRotation += 0.01;
     	}
     }
@@ -159,7 +160,7 @@ public class DriverOperated extends Command {
     }
 
     private void decreaseYAxis() {
-    	if(camAxisYRotation > 0.1) {
+    	if(camAxisYRotation > 0.01) {
     		camAxisYRotation -= 0.01;
     	}
     }

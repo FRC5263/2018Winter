@@ -23,17 +23,15 @@ public class SwitchAuton extends CommandGroup {
     	    	addSequential(new DriveTo(1, .4, 90));
     	    	addSequential(new FlipBucket());
     			//This function runs if the data is for the right side
-    		}else if(gameData.charAt(0) == 'R'){
+    		}else {
     			System.out.println("Run Right Auto");
     		
-    			addSequential(new DriveTo(12, .4, 0));
+    			addSequential(new DriveTo(16.5, .4, 0));
     	    	addSequential(new RotatePID(90));
-    	    	
-    	    	addSequential(new DriveTo(1, .4, 90));
+    	    	addSequential(new DriveTo(12.75, .4, 90));
+    	    	addSequential(new RotatePID(180));
     	    	addSequential(new FlipBucket());
     			
-    		}else{
-    			System.out.println("Something went mega wrong");
     		}
     	}	
     }
