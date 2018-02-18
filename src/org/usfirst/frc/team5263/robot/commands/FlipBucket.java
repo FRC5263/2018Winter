@@ -26,16 +26,18 @@ public class FlipBucket extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(BucketArm.isUpperLimitClosed() == false) {
-    		hitSwitch = false;
-    	}
+//    	if(BucketArm.isUpperLimitClosed() == false) {
+//    		hitSwitch = false;
+//    	}
+//    	
+//    	if(!hitSwitch) {
+//    		BucketArm.driveMotor(1.0);
+//    	}
+//    	if(BucketArm.isUpperLimitClosed()) {
+//    		hitSwitch = true;
+//    	}
     	
-    	if(!hitSwitch) {
-    		BucketArm.driveMotor(1.0);
-    	}
-    	if(BucketArm.isUpperLimitClosed()) {
-    		hitSwitch = true;
-    	}
+    	BucketArm.driveMotor(1.0);
     
     }
 

@@ -15,10 +15,10 @@ public class DriveToShape extends CommandGroup {
     	
     	this.drivePower = drivePower;
     	
-    	addSequential(new DriveTo(12, drivePower, 0));
+    	addSequential(new DriveTo(10, drivePower, 0));
     	addSequential(new RotatePID(90));
     	
-    	addSequential(new DriveUntil(1, .4));
+    	addSequential(new DriveTo(1, drivePower, 90));
     	addSequential(new FlipBucket());
     }
 }
