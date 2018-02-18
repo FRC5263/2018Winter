@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import java.util.ArrayList;
+
 import org.usfirst.frc.team5263.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.SPI;
@@ -213,7 +216,16 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void drive(double leftPower, double rightPower) {
-		myRobot.tankDrive(leftPower, rightPower);
+		//myRobot.tankDrive(leftPower, rightPower);
+		double leftAdjustedPower = Math.pow(Math.abs(leftPower), (1.0/3.0));
+		double rightAdjustedPower = Math.pow(Math.abs(rightPower), (1.0/3.0));
+		if(leftPower < 0) {
+			leftAdjustedPower *= -1;
+		}
+		if(rightPower < 0) {
+			rightAdjustedPower *= -1;
+		}
+		myRobot.tankDrive(leftAdjustedPower, rightAdjustedPower);
 	}
 
 	public void reset() {

@@ -31,8 +31,8 @@ public class DriverOperated extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double leftStickSpeed = Robot.m_oi.main.getRawAxis(1);
-    	double rightStickSpeed = Robot.m_oi.main.getRawAxis(5);
+    	double leftStickSpeed = Robot.m_oi.main.getRawAxis(1); // = Math.pow(Robot.m_oi.main.getRawAxis(1), 1/3);
+    	double rightStickSpeed = Robot.m_oi.main.getRawAxis(5); //= Math.pow(Robot.m_oi.main.getRawAxis(5), 1/3);
     	Robot.m_oi.main.getPOV();
     	/*
     	 * Axis 0 = Left Stick X
@@ -74,9 +74,9 @@ public class DriverOperated extends Command {
     		BucketArm.driveMotor(0.0);
     	}else {
     		if(aButton) {
-    			BucketArm.driveMotor(1);
-    		}else if(yButton) {
     			BucketArm.driveMotor(-0.5);
+    		}else if(yButton) {
+    			BucketArm.driveMotor(1);
     		}else {
     			BucketArm.driveMotor(0.0);
     		}
