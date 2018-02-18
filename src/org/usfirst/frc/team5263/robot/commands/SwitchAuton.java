@@ -17,9 +17,20 @@ public class SwitchAuton extends CommandGroup {
     		if(gameData.charAt(0) == 'L'){
     			System.out.println("Run Left Auto");
     			
+    			addSequential(new DriveTo(12, .4, 0));
+    	    	addSequential(new RotatePID(90));
+    	    	
+    	    	addSequential(new DriveTo(1, .4, 90));
+    	    	addSequential(new FlipBucket());
     			//This function runs if the data is for the right side
     		}else if(gameData.charAt(0) == 'R'){
     			System.out.println("Run Right Auto");
+    		
+    			addSequential(new DriveTo(12, .4, 0));
+    	    	addSequential(new RotatePID(90));
+    	    	
+    	    	addSequential(new DriveTo(1, .4, 90));
+    	    	addSequential(new FlipBucket());
     			
     		}else{
     			System.out.println("Something went mega wrong");

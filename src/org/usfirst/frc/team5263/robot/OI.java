@@ -50,6 +50,13 @@ public class OI {
 	Button buttonX = new JoystickButton(main, 3);
 	Button buttonY = new JoystickButton(main, 4);
 	
+	public Joystick main2 = new Joystick(1);
+	Button buttonA2 = new JoystickButton(main2, 1);
+	Button buttonB2 = new JoystickButton(main2, 2);
+	Button buttonX2 = new JoystickButton(main2, 3);
+	Button buttonY2 = new JoystickButton(main2, 4);
+	
+	
 	public enum ButtonName{
 		A(1), B(2), X(3), Y(4), LB(5), RB(6);
 		
@@ -60,7 +67,7 @@ public class OI {
 		}
 	}
 	public boolean getButton(ButtonName buttonName) {
-		return main.getRawButton(buttonName.value);
+		return main2.getRawButton(buttonName.value);
 	}
 	
 	public OI() {

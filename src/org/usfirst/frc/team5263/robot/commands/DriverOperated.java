@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5263.robot.commands;
+ package org.usfirst.frc.team5263.robot.commands;
 
 import org.usfirst.frc.team5263.robot.OI.ButtonName;
 import org.usfirst.frc.team5263.robot.Robot;
@@ -32,9 +32,9 @@ public class DriverOperated extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double leftStickX = Robot.m_oi.main.getRawAxis(0) * -1; 
+    	double leftStickX = Robot.m_oi.main.getRawAxis(0); 
     	double rightStickY = Robot.m_oi.main.getRawAxis(5) * -1;
-    	DriveTrain.sharedInstance().arcadeDrive(rightStickY * speedFactor, leftStickX * speedFactor);
+    	DriveTrain.sharedInstance().arcadeDrive(leftStickX * speedFactor, rightStickY * speedFactor);
     	/*
     	 * Axis 0 = Left Stick X
     	 * Axis 1 = Left Stick Y 
@@ -42,8 +42,8 @@ public class DriverOperated extends Command {
     	 * Axis 5 - Right Stick Y
     	 */
     	
-    	double rightTrigger = Robot.m_oi.main.getRawAxis(3);
-    	double leftTrigger = Robot.m_oi.main.getRawAxis(2);
+    	double rightTrigger = Robot.m_oi.main2.getRawAxis(3);
+    	double leftTrigger = Robot.m_oi.main2.getRawAxis(2);
     	
     	//Check that both triggers aren't being pushed
     	if(rightTrigger > 0.1 && leftTrigger > 0.1) {
@@ -83,7 +83,7 @@ public class DriverOperated extends Command {
     	}
     	
     	
-    	switch(Robot.m_oi.main.getPOV()) {
+    	switch(Robot.m_oi.main2.getPOV()) {
     	case 0: 
     		increaseYAxis();
     	break;
