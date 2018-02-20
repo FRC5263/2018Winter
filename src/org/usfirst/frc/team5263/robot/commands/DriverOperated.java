@@ -47,7 +47,7 @@ public class DriverOperated extends Command {
     		leftStickY = leftStickY * -1;
     	}else if(ButtonY) {
     		//Set the front of the robot back to normal
-    		leftStickY = leftStickY * 1;
+    		leftStickY = leftStickY * -1;
     	}
     	
     	if(ButtonX) {
