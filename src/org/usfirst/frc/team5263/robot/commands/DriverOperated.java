@@ -33,8 +33,22 @@ public class DriverOperated extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	boolean ButtonX = Robot.m_oi.getButtonMain(ButtonName.X);
+    	boolean ButtonA = Robot.m_oi.getButtonMain(ButtonName.A);
     	boolean ButtonB = Robot.m_oi.getButtonMain(ButtonName.B);
+    	boolean ButtonX = Robot.m_oi.getButtonMain(ButtonName.X);
+    	boolean ButtonY = Robot.m_oi.getButtonMain(ButtonName.Y);
+    	
+    	double leftStickY = Robot.m_oi.driverGamepad.getRawAxis(1) * -1; 
+    	double rightStickX = Robot.m_oi.driverGamepad.getRawAxis(4);
+    	DriveTrain.sharedInstance().arcadeDrive(leftStickY * speedFactor, rightStickX * speedFactor);
+    	
+    	if(ButtonA) {
+    		//Change which direction is the front of the robot
+    		leftStickY = leftStickY * -1;
+    	}else if(ButtonY) {
+    		//Set the front of the robot back to normal
+    		leftStickY = leftStickY * 1;
+    	}
     	
     	if(ButtonX) {
     		System.out.println("Full Speed");
@@ -43,10 +57,6 @@ public class DriverOperated extends Command {
     		System.out.println("65%");
     		speedFactor = .65;
     	}
-    	
-    	double leftStickY = Robot.m_oi.main.getRawAxis(1) * -1; 
-    	double rightStickX = Robot.m_oi.main.getRawAxis(4);
-    	DriveTrain.sharedInstance().arcadeDrive(leftStickY * speedFactor, rightStickX * speedFactor);
     	/*
     	 * Axis 0 = Left Stick X
     	 * Axis 1 = Left Stick Y 
@@ -56,8 +66,8 @@ public class DriverOperated extends Command {
     	
     	
     	double driveSpeed = 1;
-    	double rightTrigger = Robot.m_oi.main2.getRawAxis(3) * driveSpeed;
-    	double leftTrigger = Robot.m_oi.main2.getRawAxis(2) * driveSpeed;
+    	double rightTrigger = Robot.m_oi.operatorGamepad.getRawAxis(3) * driveSpeed;
+    	double leftTrigger = Robot.m_oi.operatorGamepad.getRawAxis(2) * driveSpeed;
     	
     	//Check that both triggers aren't being pushed
     	if(rightTrigger > 0.1 && leftTrigger > 0.1) {
@@ -97,7 +107,7 @@ public class DriverOperated extends Command {
     	}
     	
     	
-    	switch(Robot.m_oi.main2.getPOV()) {
+    	switch(Robot.m_oi.operatorGamepad.getPOV()) {
     	case 0: 
     		increaseYAxis();
     	break;

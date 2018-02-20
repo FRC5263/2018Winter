@@ -44,17 +44,9 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	public Joystick main = new Joystick(0);
-	Button buttonA = new JoystickButton(main, 1);
-	Button buttonB = new JoystickButton(main, 2);
-	Button buttonX = new JoystickButton(main, 3);
-	Button buttonY = new JoystickButton(main, 4);
+	public Joystick driverGamepad = new Joystick(0);
 	
-	public Joystick main2 = new Joystick(1);
-	Button buttonA2 = new JoystickButton(main2, 1);
-	Button buttonB2 = new JoystickButton(main2, 2);
-	Button buttonX2 = new JoystickButton(main2, 3);
-	Button buttonY2 = new JoystickButton(main2, 4);
+	public Joystick operatorGamepad = new Joystick(1);
 	
 	
 	public enum ButtonName{
@@ -67,11 +59,11 @@ public class OI {
 		}
 	}
 	public boolean getButton(ButtonName buttonName) {
-		return main2.getRawButton(buttonName.value);
+		return operatorGamepad.getRawButton(buttonName.value);
 	}
 	
 	public boolean getButtonMain(ButtonName buttonName) {
-		return main.getRawButton(buttonName.value);
+		return driverGamepad.getRawButton(buttonName.value);
 	}
 	public OI() {
 		
