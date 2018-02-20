@@ -14,13 +14,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team5263.robot.command.groups.copy.DriveToShape;
+import org.usfirst.frc.team5263.robot.command.groups.copy.SwitchAuton;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
-import org.usfirst.frc.team5263.robot.commands.DriveToShape;
 import org.usfirst.frc.team5263.robot.commands.DriveUntil;
 import org.usfirst.frc.team5263.robot.commands.DriverOperated;
 import org.usfirst.frc.team5263.robot.commands.RotatePID;
 import org.usfirst.frc.team5263.robot.commands.Rotation;
-import org.usfirst.frc.team5263.robot.commands.SwitchAuton;
 import org.usfirst.frc.team5263.robot.commands.VisionDrive;
 import org.usfirst.frc.team5263.robot.commands.Wait;
 import org.usfirst.frc.team5263.robot.subsystems.BucketArm;
