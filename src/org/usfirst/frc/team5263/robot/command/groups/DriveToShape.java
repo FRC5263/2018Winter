@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5263.robot.command.groups.copy;
+package org.usfirst.frc.team5263.robot.command.groups;
 
 import org.usfirst.frc.team5263.robot.commands.FlipBucket;
 
