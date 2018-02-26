@@ -37,7 +37,14 @@ public class DriverOperated extends Command {
     	
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//DRIVE TRAIN CONTROL
-    	
+   
+    	if(ButtonX) {
+    		System.out.println("Full Speed"); 
+    		driveSpeedFactor = 1;
+    	}else if(ButtonB){
+    		System.out.println("65%");
+    		driveSpeedFactor = .65;
+    	}
     	
     	/*
     	 * Axis 0 = Left Stick X
@@ -169,7 +176,8 @@ public class DriverOperated extends Command {
     private void decreaseXAxis() {
     	if(camAxisXRotation > 0.01) {
     		camAxisXRotation -= 0.01;
-    	}
+    		
+    				}
     }
     
     private void decreaseYAxis() {
