@@ -16,7 +16,7 @@ package org.usfirst.frc.team5263.robot;
 public class RobotMap {
 	
 	//robot type
-	public static final boolean isCompetitionBot = true;
+	public static final boolean isCompetitionBot = false;
 //	public static final boolean isCompetitionBot = false;
 	
 	//DIO channel variables
@@ -38,6 +38,7 @@ public class RobotMap {
 		//for cube intake
 	public static final int intakeMotorLeftChannel = 2;
 	public static final int intakeMotorRightChannel = 3;
+	public static final int liftMotorChannel = 4; //double check
 	public static final int intakeLiftMotorChannel = 7;
 		//for camera
 	public static final int cameraXServoChannel = 5;

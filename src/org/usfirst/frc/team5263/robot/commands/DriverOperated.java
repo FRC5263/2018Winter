@@ -39,10 +39,10 @@ public class DriverOperated extends Command {
     	//DRIVE TRAIN CONTROL
    
     	if(ButtonX) {
-    		System.out.println("Full Speed"); 
+//    		System.out.println("Full Speed"); 
     		driveSpeedFactor = 1;
     	}else if(ButtonB){
-    		System.out.println("65%");
+//    		System.out.println("65%");
     		driveSpeedFactor = .65;
     	}
     	
@@ -99,9 +99,9 @@ public class DriverOperated extends Command {
     		}
     	}
     	
-    	double intakeLiftSpeed = Robot.m_oi.operatorGamepad.getRawAxis(0) * -1;
+    	double intakeLiftSpeed = Robot.m_oi.operatorGamepad.getRawAxis(1) * -1;
     	CubeIntake.driveLiftMotor(intakeLiftSpeed);
-    	
+    	System.out.println("STICK SPEED " + intakeLiftSpeed);
     	
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//FLIP BUCKET
