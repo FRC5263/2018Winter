@@ -28,6 +28,8 @@ public class RobotMap {
 	public static final int ultrasonicOutputChannel = 5; //
     public static final int upperLimitSwitchChannel = 6; // not connected
     public static final int lowerLimitSwitchChannel = 7; // not connected 
+	public static final int intakeLiftEncoderChannelA = 8;
+	public static final int intakeLiftEncoderChannelB = 9;
 	
 	//PWM channel variables
     	//for drive train
@@ -36,6 +38,7 @@ public class RobotMap {
 		//for cube intake
 	public static final int intakeMotorLeftChannel = 2;
 	public static final int intakeMotorRightChannel = 3;
+	public static final int intakeLiftMotorChannel = 7;
 		//for bucket arm
 	public static final int liftMotorChannel = 4; //change
 		//for camera

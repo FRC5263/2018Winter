@@ -66,6 +66,8 @@ public class DriveTrain extends Subsystem {
 	private DifferentialDrive myRobot;
 	public AHRS ahrs = new AHRS(SPI.Port.kMXP);
 	private Ultrasonic sonic; 
+	
+	
 	public DriveTrain() {
 		//instantiating objects
 		LeftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB);

@@ -16,47 +16,29 @@ public class DriverOperated extends Command {
 	private double camAxisXRotation = 1.0;
 	private double camAxisYRotation = 1.0;
 	
-	private double speedFactor = .65;
+	private double driveSpeedFactor = .65;
+	private double intakeDriveSpeed = 1;
 	
     public DriverOperated() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.myDrive);
     	requires(Robot.myVision);
     }
 
-    // Called just before this Command runs the first time
+
     protected void initialize() {
-	    Vision.setCamAxisX(90);
-	    Vision.setCamAxisY(180);
     }
 
-    // Called repeatedly when this Command is scheduled to run
+
     protected void execute() {
     	boolean ButtonA = Robot.m_oi.getButtonMain(ButtonName.A);
     	boolean ButtonB = Robot.m_oi.getButtonMain(ButtonName.B);
     	boolean ButtonX = Robot.m_oi.getButtonMain(ButtonName.X);
     	boolean ButtonY = Robot.m_oi.getButtonMain(ButtonName.Y);
     	
-    	double leftStickY = Robot.m_oi.driverGamepad.getRawAxis(1) * -1; 
-    	double rightStickX = Robot.m_oi.driverGamepad.getRawAxis(4);
-    	DriveTrain.sharedInstance().arcadeDrive(leftStickY * speedFactor, rightStickX * speedFactor);
+    	//-----------------------------------------------------------------------------------------------------------------------------------------
+    	//DRIVE TRAIN CONTROL
     	
-    	if(ButtonA) {
-    		//Change which direction is the front of the robot
-    		leftStickY = leftStickY * -1;
-    	}else if(ButtonY) {
-    		//Set the front of the robot back to normal
-    		leftStickY = leftStickY * -1;
-    	}
     	
-    	if(ButtonX) {
-    		System.out.println("Full Speed");
-    		speedFactor = 1;
-    	}else if(ButtonB){
-    		System.out.println("65%");
-    		speedFactor = .65;
-    	}
     	/*
     	 * Axis 0 = Left Stick X
     	 * Axis 1 = Left Stick Y 
@@ -64,10 +46,31 @@ public class DriverOperated extends Command {
     	 * Axis 5 - Right Stick Y
     	 */
     	
+    	double rightStickY = Robot.m_oi.driverGamepad.getRawAxis(5) * -1; //TEMPORARY CHANGE TO USE SAME STICK, USED IN INTAKE LIFT, TO REVERT CHANGE AXIS TO 1 AND RENAME LEFT STICK Y
+    	double rightStickX = Robot.m_oi.driverGamepad.getRawAxis(4);	
+    	DriveTrain.sharedInstance().arcadeDrive(rightStickY * driveSpeedFactor, rightStickX * driveSpeedFactor);
     	
-    	double driveSpeed = 1;
-    	double rightTrigger = Robot.m_oi.operatorGamepad.getRawAxis(3) * driveSpeed;
-    	double leftTrigger = Robot.m_oi.operatorGamepad.getRawAxis(2) * driveSpeed;
+    	if(ButtonA) {
+    		//Change which direction is the front of the robot
+    		rightStickY = rightStickY * -1;
+    	}else if(ButtonY) {
+    		//Set the front of the robot back to normal
+    		rightStickY = rightStickY * -1;
+    	}
+    	
+    	if(ButtonX) {
+    		System.out.println("Full Speed");
+    		driveSpeedFactor = 1;
+    	}else if(ButtonB){
+    		System.out.println("65%");
+    		driveSpeedFactor = .65;
+    	}
+    	
+    	//-----------------------------------------------------------------------------------------------------------------------------------------
+    	//INTAKE CONTROL
+    	
+    	double rightTrigger = Robot.m_oi.operatorGamepad.getRawAxis(3) * intakeDriveSpeed;
+    	double leftTrigger = Robot.m_oi.operatorGamepad.getRawAxis(2) * intakeDriveSpeed;
     	
     	//Check that both triggers aren't being pushed
     	if(rightTrigger > 0.1 && leftTrigger > 0.1) {
@@ -89,7 +92,13 @@ public class DriverOperated extends Command {
     		}
     	}
     	
+    	double intakeLiftSpeed = Robot.m_oi.operatorGamepad.getRawAxis(0) * -1;
+    	CubeIntake.driveLiftMotor(intakeLiftSpeed);
+    	
+    	
+    	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//FLIP BUCKET
+    	
     	boolean aButton = Robot.m_oi.getButton(ButtonName.A);
     	boolean yButton = Robot.m_oi.getButton(ButtonName.Y);
     	
@@ -106,6 +115,9 @@ public class DriverOperated extends Command {
     		}
     	}
     	
+    	
+    	//-----------------------------------------------------------------------------------------------------------------------------------------
+    	//CAMERA
     	
     	switch(Robot.m_oi.operatorGamepad.getPOV()) {
     	case 0: 
@@ -142,15 +154,6 @@ public class DriverOperated extends Command {
     	Vision.setCamAxisY(camAxisYRotation);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
     private void increaseXAxis() {
     	if(camAxisXRotation < 0.99) {
     		camAxisXRotation += 0.01;   
@@ -168,23 +171,24 @@ public class DriverOperated extends Command {
     		camAxisXRotation -= 0.01;
     	}
     }
-
+    
     private void decreaseYAxis() {
     	if(camAxisYRotation > 0.01) {
     		camAxisYRotation -= 0.01;
     	}
     }
     
-    //Push the cube in
-//    private void cubeOut() {
-//    	CubeIntake.driveMotors(.5);
-//    }
-//    
-//    private void cubeIn() {
-//    	CubeIntake.driveMotors(-0.5);
-//    }
+    //-----------------------------------------------------------------------------------------------------------------------------------------
     
-    //
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+        return false;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+    }
+
     
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
