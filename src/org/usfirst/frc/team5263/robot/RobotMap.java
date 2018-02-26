@@ -39,7 +39,6 @@ public class RobotMap {
 	public static final int intakeMotorLeftChannel = 2;
 	public static final int intakeMotorRightChannel = 3;
 	public static final int intakeLiftMotorChannel = 7;
-	public static final int liftMotorChannel = 4; //change
 		//for camera
 	public static final int cameraXServoChannel = 5;
 	public static final int cameraYServoChannel = 6;
