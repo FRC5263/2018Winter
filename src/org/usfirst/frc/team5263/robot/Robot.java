@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5263.robot.command.groups.copy.DriveToShape;
-import org.usfirst.frc.team5263.robot.command.groups.copy.SwitchAuton;
+import org.usfirst.frc.team5263.robot.command.groups.DriveToShape;
+import org.usfirst.frc.team5263.robot.command.groups.SwitchAuton;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.DriveUntil;
 import org.usfirst.frc.team5263.robot.commands.DriverOperated;
