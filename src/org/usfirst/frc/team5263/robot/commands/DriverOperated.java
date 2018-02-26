@@ -42,20 +42,18 @@ public class DriverOperated extends Command {
     	double rightStickX = Robot.m_oi.driverGamepad.getRawAxis(4);
     	DriveTrain.sharedInstance().arcadeDrive(leftStickY * speedFactor, rightStickX * speedFactor);
     	
-    	if(ButtonA) {
-    		//Change which direction is the front of the robot
-    		leftStickY = leftStickY * -1;
-    	}else if(ButtonY) {
-    		//Set the front of the robot back to normal
-    		leftStickY = leftStickY * -1;
-    	}
-    	
     	if(ButtonX) {
-    		System.out.println("Full Speed");
+    		System.out.println("Full Speed"); 
     		speedFactor = 1;
     	}else if(ButtonB){
     		System.out.println("65%");
     		speedFactor = .65;
+    	}
+    	
+    	if(ButtonA){
+    		CubeIntake.liftMotor(.5);
+    	}else if(ButtonY){
+    		CubeIntake.liftMotor(-.5);
     	}
     	/*
     	 * Axis 0 = Left Stick X
@@ -166,7 +164,8 @@ public class DriverOperated extends Command {
     private void decreaseXAxis() {
     	if(camAxisXRotation > 0.01) {
     		camAxisXRotation -= 0.01;
-    	}
+    		
+    				}
     }
 
     private void decreaseYAxis() {
