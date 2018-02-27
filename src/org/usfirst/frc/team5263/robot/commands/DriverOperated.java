@@ -53,7 +53,7 @@ public class DriverOperated extends Command {
     	 * Axis 5 - Right Stick Y
     	 */
     	
-    	double rightStickY = Robot.m_oi.driverGamepad.getRawAxis(5) * -1; //TEMPORARY CHANGE TO USE SAME STICK, USED IN INTAKE LIFT, TO REVERT CHANGE AXIS TO 1 AND RENAME LEFT STICK Y
+    	double rightStickY = Robot.m_oi.driverGamepad.getRawAxis(1) * -1; 
     	double rightStickX = Robot.m_oi.driverGamepad.getRawAxis(4);	
     	DriveTrain.sharedInstance().arcadeDrive(rightStickY * driveSpeedFactor, rightStickX * driveSpeedFactor);
     	

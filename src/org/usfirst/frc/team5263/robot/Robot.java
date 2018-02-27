@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
 		
 		m_chooser.addDefault("Default Auto", new Wait(100));
 		m_chooser.addObject("DriveToShape", new DriveToShape(.4));
-		m_chooser.addObject("Switch Auton", new SwitchAuton());
+		m_chooser.addObject("Switch Auton", new SwitchAuton(null, null));
 		m_chooser.addObject("Rotate to", new Rotation(90, .4));
 		m_chooser.addObject("Drive To 10 ft, .6 power", new DriveTo(10, .6));
 		m_chooser.addObject("Drive To -5 ft, .8 power", new DriveTo(-5, .8));
