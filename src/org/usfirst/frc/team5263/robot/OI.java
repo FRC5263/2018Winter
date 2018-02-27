@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team5263.robot;
 
+import org.usfirst.frc.team5263.robot.command.groups.CubeIntakeAuton;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -48,6 +50,7 @@ public class OI {
 	
 	public Joystick operatorGamepad = new Joystick(1);
 	
+	Button rightBumper = new JoystickButton(operatorGamepad, 6);
 	
 	public enum ButtonName{
 		A(1), B(2), X(3), Y(4), LB(5), RB(6);
@@ -66,6 +69,6 @@ public class OI {
 		return driverGamepad.getRawButton(buttonName.value);
 	}
 	public OI() {
-		
+		rightBumper.whenPressed(new CubeIntakeAuton());
 	}
 }

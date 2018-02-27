@@ -35,6 +35,8 @@ public class DriverOperated extends Command {
     	boolean ButtonX = Robot.m_oi.getButtonMain(ButtonName.X);
     	boolean ButtonY = Robot.m_oi.getButtonMain(ButtonName.Y);
     	
+    	
+    	
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//DRIVE TRAIN CONTROL
    
