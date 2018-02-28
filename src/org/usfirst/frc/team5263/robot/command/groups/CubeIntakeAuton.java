@@ -26,10 +26,11 @@ public class CubeIntakeAuton extends CommandGroup {
         // would require.
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
-        // arm.
+        // arm.e
     	
-    	addSequential(new Suck(1, 1));
     	addSequential(new Lift(-1, 1));
+
+    	addSequential(new Lift(.5, 1));
     	addSequential(new Suck(-1, 1));
     	
     }
