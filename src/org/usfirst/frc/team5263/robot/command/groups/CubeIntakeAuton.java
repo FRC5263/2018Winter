@@ -29,7 +29,7 @@ public class CubeIntakeAuton extends CommandGroup {
         // arm.
     	
     	addSequential(new Suck(1, 1));
-    	addSequential(new Lift(.5, 1));
+    	addSequential(new Lift(-1, 1));
     	addSequential(new Suck(-1, 1));
     	
     }

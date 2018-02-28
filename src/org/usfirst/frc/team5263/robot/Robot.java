@@ -20,6 +20,7 @@ import org.usfirst.frc.team5263.robot.command.groups.SwitchAuton;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.DriveUntil;
 import org.usfirst.frc.team5263.robot.commands.DriverOperated;
+import org.usfirst.frc.team5263.robot.commands.Lift;
 import org.usfirst.frc.team5263.robot.commands.RotatePID;
 import org.usfirst.frc.team5263.robot.commands.Rotation;
 import org.usfirst.frc.team5263.robot.commands.VisionDrive;
@@ -69,6 +70,7 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Drive To 6 ft, .3 power", new DriveTo(6, .3));
 		m_chooser.addObject("Drive To 5 ft, .5", new DriveTo(5, .5));
 		m_chooser.addObject("DriveUntil 3 ft", new DriveUntil(100, .6));
+		m_chooser.addObject("Lift: ", new Lift(1, 1));
 		m_chooser.addObject("Wait", new Wait(5));
 		m_chooser.addObject("RotatePID", new RotatePID(90));
 		m_chooser.addObject("Vision", new VisionDrive());
