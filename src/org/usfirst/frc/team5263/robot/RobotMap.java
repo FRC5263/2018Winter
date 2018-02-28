@@ -16,7 +16,7 @@ package org.usfirst.frc.team5263.robot;
 public class RobotMap {
 	
 	//robot type
-	public static final boolean isCompetitionBot = false;
+	public static final boolean isCompetitionBot = true;
 //	public static final boolean isCompetitionBot = false;
 	
 	//DIO channel variables

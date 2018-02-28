@@ -29,7 +29,7 @@ public class CubeIntake extends Subsystem {
 		if(RobotMap.isCompetitionBot) {
 			intakeMotorLeft = new Victor (RobotMap.intakeMotorLeftChannel);
 			intakeMotorRight = new Victor (RobotMap.intakeMotorRightChannel);
-			intakeLiftMotor = new Victor(RobotMap.intakeLiftMotorChannel);
+			intakeLiftMotor = new Jaguar(RobotMap.intakeLiftMotorChannel);
 		} else {
 			intakeMotorLeft = new Jaguar (RobotMap.intakeMotorLeftChannel);
 			intakeMotorRight = new Jaguar (RobotMap.intakeMotorRightChannel);
