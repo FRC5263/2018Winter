@@ -29,7 +29,7 @@ public class CubeIntake extends Subsystem {
 		if(RobotMap.isCompetitionBot) {
 			intakeMotorLeft = new Victor (RobotMap.intakeMotorLeftChannel);
 			intakeMotorRight = new Victor (RobotMap.intakeMotorRightChannel);
-			intakeLiftMotor = new Jaguar(RobotMap.intakeLiftMotorChannel);
+			intakeLiftMotor = new Victor (RobotMap.intakeLiftMotorChannel);
 		} else {
 			intakeMotorLeft = new Jaguar (RobotMap.intakeMotorLeftChannel);
 			intakeMotorRight = new Jaguar (RobotMap.intakeMotorRightChannel);
@@ -51,10 +51,10 @@ public class CubeIntake extends Subsystem {
     }
     
     public static void driveLiftMotor(double power) {
-    	intakeLiftMotor.set(power);
+    	intakeLiftMotor.set(power * 0.5);
     }
     
-    public void displayData() {
+    public static void displayData() {
     	SmartDashboard.putNumber("Cube Intake Lift Encoder", liftEncoder.get());
     }
     
