@@ -6,24 +6,25 @@ import org.usfirst.frc.team5263.robot.commands.RotatePID;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class SwitchAuton extends CommandGroup {
 
-	private String blueOrRed;
 	private String LRC;
 	public String gameData;
 	
-    public SwitchAuton(String blueOrRed, String LRC) {
+    public SwitchAuton(String LRC) {
     	
-    	this.blueOrRed = blueOrRed;
     	this.LRC = LRC;
     	
     }
     
     protected void initialize() {
+    	
+    	
     	this.gameData = DriverStation.getInstance().getGameSpecificMessage();
     	if(LRC == "L"){
     		

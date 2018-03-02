@@ -15,7 +15,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5263.robot.command.groups.CenterAuton;
 import org.usfirst.frc.team5263.robot.command.groups.DriveToShape;
+import org.usfirst.frc.team5263.robot.command.groups.LeftAuton;
+import org.usfirst.frc.team5263.robot.command.groups.RightAuton;
 import org.usfirst.frc.team5263.robot.command.groups.SwitchAuton;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.DriveUntil;
@@ -62,19 +65,9 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		
 		m_chooser.addDefault("Default Auto", new Wait(100));
-		m_chooser.addObject("DriveToShape", new DriveToShape(.4));
-		m_chooser.addObject("Switch Auton", new SwitchAuton(null, null));
-		m_chooser.addObject("Rotate to", new Rotation(90, .4));
-		m_chooser.addObject("Drive To 10 ft, .6 power", new DriveTo(10, .6));
-		m_chooser.addObject("Drive To -5 ft, .8 power", new DriveTo(-5, .8));
-		m_chooser.addObject("Drive To 6 ft, .3 power", new DriveTo(6, .3));
-		m_chooser.addObject("Drive To 5 ft, .5", new DriveTo(5, .5));
-		m_chooser.addObject("DriveUntil 3 ft", new DriveUntil(100, .6));
-		m_chooser.addObject("Lift: ", new Lift(1, 1));
-		m_chooser.addObject("Wait", new Wait(5));
-		m_chooser.addObject("RotatePID", new RotatePID(90));
-		m_chooser.addObject("Vision", new VisionDrive());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		m_chooser.addObject("Left Auton", new LeftAuton());
+		m_chooser.addObject("Right Auton", new RightAuton());
+		m_chooser.addObject("Center Auton", new CenterAuton());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		LiveWindow.add(DriveTrain.sharedInstance().turnController);
 		LiveWindow.add(DriveTrain.sharedInstance().driveController);
