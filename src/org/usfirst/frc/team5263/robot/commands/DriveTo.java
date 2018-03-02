@@ -26,6 +26,8 @@ public class DriveTo extends Command {
 		this.power = power;
 		this.initialAngle = angle;
 		this.driveByAngle = true;
+		
+		setTimeout(10);
 	}
 	public DriveTo(double driveDistanceFeet, double power) {
 		requires(Robot.myDrive);
@@ -80,7 +82,7 @@ public class DriveTo extends Command {
 	protected boolean isFinished() {
 		System.out.println("DriveTo ran");
 		
-		return isFinished;
+		return isFinished || isTimedOut();
 	}
 
 	// Called once after isFinished returns true

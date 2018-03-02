@@ -18,6 +18,8 @@ public class DriveUntil extends Command {
     public DriveUntil(double distance, double power) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	
+    	setTimeout(4);
     	requires(Robot.myDrive);
     	this.distance = distance;
     	this.power = power;
@@ -45,7 +47,7 @@ public class DriveUntil extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isFinished;
+        return isFinished || isTimedOut();
     }
 
     // Called once after isFinished returns true

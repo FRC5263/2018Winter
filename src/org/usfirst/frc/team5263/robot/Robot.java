@@ -53,8 +53,13 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 	Command teleop = new DriverOperated();
 	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+	SendableChooser<commandName> m_chooser = new SendableChooser<>();
+	
+	
+	enum commandName{
+		Left, Center, Right, Wait;
+	}
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -64,10 +69,10 @@ public class Robot extends TimedRobot {
 		
 		m_oi = new OI();
 		
-		m_chooser.addDefault("Default Auto", new Wait(100));
-		m_chooser.addObject("Left Auton", new LeftAuton());
-		m_chooser.addObject("Right Auton", new RightAuton());
-		m_chooser.addObject("Center Auton", new CenterAuton());
+		m_chooser.addDefault("Default Auto", commandName.Wait);
+		m_chooser.addObject("Left Auton", commandName.Left);
+		m_chooser.addObject("Right Auton", commandName.Right);
+		m_chooser.addObject("Center Auton", commandName.Center);
 		SmartDashboard.putData("Auto mode", m_chooser);
 		LiveWindow.add(DriveTrain.sharedInstance().turnController);
 		LiveWindow.add(DriveTrain.sharedInstance().driveController);
@@ -110,8 +115,25 @@ public class Robot extends TimedRobot {
 			System.out.println("Cancelling existing command");
 			m_autonomousCommand.cancel();
 		}
+
+		m_autonomousCommand = null;
 		
-		m_autonomousCommand = m_chooser.getSelected();
+		switch (m_chooser.getSelected()) {
+		case Right:
+			m_autonomousCommand = new RightAuton();
+			break;
+		case Left:
+			m_autonomousCommand = new LeftAuton();
+			break;
+		case Center:
+			m_autonomousCommand = new CenterAuton();
+			break;
+		case Wait:
+			m_autonomousCommand = new Wait(1000);
+			break;
+		default:
+			break;
+		}
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

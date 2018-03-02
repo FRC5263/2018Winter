@@ -17,9 +17,7 @@ public class SwitchAuton extends CommandGroup {
 	public String gameData;
 	
     public SwitchAuton(String LRC) {
-    	
     	this.LRC = LRC;
-    	
     }
     
     protected void initialize() {

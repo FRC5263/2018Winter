@@ -19,6 +19,7 @@ public class DriverOperated extends Command {
 	private double driveSpeedFactor = .65;
 	private double intakeDriveSpeed = 1;
 	
+	private boolean facingForward = true;
     public DriverOperated() {
     	requires(Robot.myDrive);
     	requires(Robot.myVision);
@@ -37,13 +38,11 @@ public class DriverOperated extends Command {
     	
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//DRIVE TRAIN CONTROL
-   
-    	if(ButtonX) {
-//    		System.out.println("Full Speed"); 
-    		driveSpeedFactor = 1;
-    	}else if(ButtonB){
-//    		System.out.println("65%");
-    		driveSpeedFactor = .65;
+    	
+    	if(ButtonY){
+    		facingForward = true;
+    	}else if (ButtonA){
+    		facingForward = false;
     	}
     	
     	/*
@@ -55,15 +54,15 @@ public class DriverOperated extends Command {
     	
     	double rightStickY = Robot.m_oi.driverGamepad.getRawAxis(1) * -1; 
     	double rightStickX = Robot.m_oi.driverGamepad.getRawAxis(4);	
-    	DriveTrain.sharedInstance().arcadeDrive(rightStickY * driveSpeedFactor, rightStickX * driveSpeedFactor);
     	
-    	if(ButtonA) {
-    		//Change which direction is the front of the robot
-    		rightStickY = rightStickY * -1;
-    	}else if(ButtonY) {
-    		//Set the front of the robot back to normal
-    		rightStickY = rightStickY * -1;
-    	}
+    	//THIS WILL NOT WORK, buttonA and buttonY are not toggle booleans
+//    	if(ButtonA) {
+//    		//Change which direction is the front of the robot
+//    		rightStickY = rightStickY * -1;
+//    	}else if(ButtonY) {
+//    		//Set the front of the robot back to normal
+//    		rightStickY = rightStickY * -1;
+//    	}
     	
     	if(ButtonX) {
     		System.out.println("Full Speed");
@@ -73,6 +72,11 @@ public class DriverOperated extends Command {
     		driveSpeedFactor = .65;
     	}
     	
+    	if(facingForward)
+    		DriveTrain.sharedInstance().arcadeDrive(rightStickY * driveSpeedFactor, rightStickX * driveSpeedFactor);
+    	else 
+    		DriveTrain.sharedInstance().arcadeDrive(rightStickY * driveSpeedFactor *-1, rightStickX * driveSpeedFactor *-1);
+    		
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//INTAKE CONTROL
     	

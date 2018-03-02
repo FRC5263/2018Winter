@@ -56,7 +56,7 @@ public class DriveTrain extends Subsystem {
 	//constants
 	private final static double wheelDiameterInches = 6.0;
 	private final static double encoderClicksPerRevolution = 360;
-	private final static double ultrasonicOffset = 3; //inches the ultrasonic is mounted from the front of the robot
+	private final static double ultrasonicOffset = 13; //inches the ultrasonic is mounted from the front of the robot
 
 	//objects
 	public Encoder LeftEncoder;
