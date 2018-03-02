@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriverOperated extends Command {
 
-	private double camAxisXRotation = 1.0;
-	private double camAxisYRotation = 1.0;
+	private double camAxisXRotation = 0.5;
+	private double camAxisYRotation = 0.5;
 	
 	private double driveSpeedFactor = .65;
 	private double intakeDriveSpeed = 1;
@@ -36,6 +36,17 @@ public class DriverOperated extends Command {
     	boolean ButtonX = Robot.m_oi.getButtonMain(ButtonName.X);
     	boolean ButtonY = Robot.m_oi.getButtonMain(ButtonName.Y);
     	
+    	boolean OperatorB = Robot.m_oi.getButton(ButtonName.B);
+    	boolean OperatorX = Robot.m_oi.getButton(ButtonName.X);
+    	
+    	
+    	if(OperatorB){
+    		CubeIntake.driveLiftMotor(1);
+    	}else if(OperatorX){
+    		CubeIntake.driveLiftMotor(-.4);
+    	}else{
+    		CubeIntake.driveLiftMotor(0);
+    	}
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//DRIVE TRAIN CONTROL
     	
@@ -103,9 +114,13 @@ public class DriverOperated extends Command {
     		}
     	}
     	
-    	double intakeLiftSpeed = Robot.m_oi.operatorGamepad.getRawAxis(1) * -1;
-    	CubeIntake.driveLiftMotor(intakeLiftSpeed);
-    	System.out.println("STICK SPEED " + intakeLiftSpeed);
+    	//WE MIGHT NEED THIS LATER ON, STAY TUNED
+    	
+    	//double intakeLiftSpeed = Robot.m_oi.operatorGamepad.getRawAxis(1) * -1;
+    	//CubeIntake.driveLiftMotor(intakeLiftSpeed);
+    	//System.out.println("STICK SPEED " + intakeLiftSpeed);
+    	
+    	
     	
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//FLIP BUCKET
@@ -161,8 +176,8 @@ public class DriverOperated extends Command {
     		break;
     	}
     	
-    	Vision.setCamAxisX(camAxisXRotation);
-    	Vision.setCamAxisY(camAxisYRotation);
+//    	Vision.setCamAxisX(camAxisXRotation);
+//    	Vision.setCamAxisY(camAxisYRotation);
     }
 
     private void increaseXAxis() {

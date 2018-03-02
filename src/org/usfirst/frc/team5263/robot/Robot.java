@@ -109,7 +109,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		DriveTrain.sharedInstance().reset();
-		
+		//very temporary, yell at me later
+		Vision.setCamAxisX(0.5);
+		Vision.setCamAxisY(0.5);
 		System.out.println("autonomous init");
 		if (m_autonomousCommand != null) {
 			System.out.println("Cancelling existing command");
@@ -156,6 +158,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		Vision.setCamAxisX(0.5);
+		Vision.setCamAxisY(0.5);
 		Scheduler.getInstance().run();
 	}
 
@@ -165,6 +169,8 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+		Vision.setCamAxisX(0.5);
+		Vision.setCamAxisY(0.5);
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
@@ -176,6 +182,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		Vision.setCamAxisX(0.5);
+		Vision.setCamAxisY(0.5);
 		Scheduler.getInstance().run();
 		myVision.VisionPeriodic();
 	}

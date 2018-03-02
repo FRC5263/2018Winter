@@ -45,5 +45,7 @@ public class RobotMap {
 	public static final int cameraYServoChannel = 6;
 	
 	
+	public static final int SpikeRelayChannel = 0;
+	
 	
 }
