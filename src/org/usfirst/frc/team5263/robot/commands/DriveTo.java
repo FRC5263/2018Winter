@@ -19,23 +19,26 @@ public class DriveTo extends Command {
 	private double initialAngle;
 	double driveDistanceFeet;
 	double power;
+	double seconds;
 
-	public DriveTo(double driveDistanceFeet, double power, double angle) {
+	public DriveTo(double driveDistanceFeet, double power, double angle, double seconds) {
 		requires(Robot.myDrive);
 		this.driveDistanceFeet = driveDistanceFeet;
 		this.power = power;
 		this.initialAngle = angle;
 		this.driveByAngle = true;
+		this.seconds = seconds;
 		
-		setTimeout(3);
+		setTimeout(seconds);
 	}
-	public DriveTo(double driveDistanceFeet, double power) {
+	public DriveTo(double driveDistanceFeet, double power, double seconds) {
 		requires(Robot.myDrive);
 		this.driveDistanceFeet = driveDistanceFeet;
 		this.power = power;
 		this.driveByAngle = false;
+		this.seconds = seconds;
 		
-		setTimeout(3);
+		setTimeout(seconds);
 	}
 
 	// Called just before this Command runs the first time

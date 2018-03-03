@@ -31,13 +31,20 @@ public class DriverOperated extends Command {
 
 
     protected void execute() {
+    	//Driver Button
     	boolean ButtonA = Robot.m_oi.getButtonMain(ButtonName.A);
     	boolean ButtonB = Robot.m_oi.getButtonMain(ButtonName.B);
     	boolean ButtonX = Robot.m_oi.getButtonMain(ButtonName.X);
     	boolean ButtonY = Robot.m_oi.getButtonMain(ButtonName.Y);
     	
+    	
+    	//Operator Buttons
     	boolean OperatorB = Robot.m_oi.getButton(ButtonName.B);
     	boolean OperatorX = Robot.m_oi.getButton(ButtonName.X);
+    	boolean OperatorRB = Robot.m_oi.getButton(ButtonName.RB);
+    	boolean OperatorLB = Robot.m_oi.getButton(ButtonName.LB);
+    	
+    	
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//DRIVE TRAIN CONTROL
     	
@@ -46,6 +53,8 @@ public class DriverOperated extends Command {
 //    	}else if (ButtonA){
 //    		facingForward = false;
 //    	}
+    	
+    	
     	
     	/*
     	 * Axis 0 = Left Stick X
@@ -56,15 +65,6 @@ public class DriverOperated extends Command {
     	
     	double rightStickY = Robot.m_oi.driverGamepad.getRawAxis(1) * -1; 
     	double rightStickX = Robot.m_oi.driverGamepad.getRawAxis(4);	
-    	
-    	//THIS WILL NOT WORK, buttonA and buttonY are not toggle booleans
-//    	if(ButtonA) {
-//    		//Change which direction is the front of the robot
-//    		rightStickY = rightStickY * -1;
-//    	}else if(ButtonY) {
-//    		//Set the front of the robot back to normal
-//    		rightStickY = rightStickY * -1;
-//    	}
     	
     	if(ButtonX) {
     		System.out.println("Full Speed");
@@ -128,20 +128,27 @@ public class DriverOperated extends Command {
     	boolean aButton = Robot.m_oi.getButton(ButtonName.A);
     	boolean yButton = Robot.m_oi.getButton(ButtonName.Y);
     	
+    	double bucketLiftSpeed = 1.0;
+    	
     	if(aButton & yButton) {
     		//We don't want to do anything
     		BucketArm.driveMotor(0.0);
     	}else {
     		if(aButton) {
-    			BucketArm.driveMotor(-0.4);
+    			BucketArm.driveMotor(-1 * bucketLiftSpeed);
     		}else if(yButton) {
-    			BucketArm.driveMotor(1);
+    			BucketArm.driveMotor(1 * bucketLiftSpeed);
     		}else {
     			BucketArm.driveMotor(0.0);
     		}
     	}
     	
-    	
+    	if(OperatorRB)
+    		bucketLiftSpeed = 1.0;
+    	else if(OperatorLB)
+    		bucketLiftSpeed = 0.75;
+//    	else
+//    		System.out.println("We did nothing");
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//CAMERA
     	

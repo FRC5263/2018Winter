@@ -19,22 +19,22 @@ public class RightAuton extends CommandGroup {
 			if(gameData.charAt(0) == 'L'){
 				System.out.println("Run Left Auto");
 				
-				addSequential(new DriveTo(16.5, .4, 0));
+				addSequential(new DriveTo(17.5, .4, 0, 7));
     			addSequential(new RotatePID(-90));
     			
-    			addSequential(new DriveTo(12.75, .4, -90));
+    			addSequential(new DriveTo(13.25, .4, -90, 6));
     			addSequential(new RotatePID(-180));
-    			addParallel(new DriveTo(0.5, .4, -180));
+    			addParallel(new DriveTo(0.5, .4, -180, 1));
     			
 				addSequential(new FlipBucket());
 				//This function runs if the data is for the right side
 			}else {
 				System.out.println("Run Right Auto");
 				
-				addSequential(new DriveTo(12, .4, 0));
+				addSequential(new DriveTo(12, .4, 0, 6));
     			addSequential(new RotatePID(-90));
     			
-    			addSequential(new DriveTo(1, .4, -90));
+    			addSequential(new DriveTo(1, .4, -90, 1));
     			addSequential(new FlipBucket());
 				
 			}
