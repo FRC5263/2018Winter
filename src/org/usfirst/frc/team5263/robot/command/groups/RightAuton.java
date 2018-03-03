@@ -24,6 +24,7 @@ public class RightAuton extends CommandGroup {
     			
     			addSequential(new DriveTo(12.75, .4, -90));
     			addSequential(new RotatePID(-180));
+    			addParallel(new DriveTo(0.5, .4, -180));
     			
 				addSequential(new FlipBucket());
 				//This function runs if the data is for the right side

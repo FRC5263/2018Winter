@@ -38,23 +38,14 @@ public class DriverOperated extends Command {
     	
     	boolean OperatorB = Robot.m_oi.getButton(ButtonName.B);
     	boolean OperatorX = Robot.m_oi.getButton(ButtonName.X);
-    	
-    	
-    	if(OperatorB){
-    		CubeIntake.driveLiftMotor(1);
-    	}else if(OperatorX){
-    		CubeIntake.driveLiftMotor(-.4);
-    	}else{
-    		CubeIntake.driveLiftMotor(0);
-    	}
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//DRIVE TRAIN CONTROL
     	
-    	if(ButtonY){
-    		facingForward = true;
-    	}else if (ButtonA){
-    		facingForward = false;
-    	}
+//    	if(ButtonY){
+//    		facingForward = true;
+//    	}else if (ButtonA){
+//    		facingForward = false;
+//    	}
     	
     	/*
     	 * Axis 0 = Left Stick X
@@ -116,11 +107,20 @@ public class DriverOperated extends Command {
     	
     	//WE MIGHT NEED THIS LATER ON, STAY TUNED
     	
-    	//double intakeLiftSpeed = Robot.m_oi.operatorGamepad.getRawAxis(1) * -1;
-    	//CubeIntake.driveLiftMotor(intakeLiftSpeed);
+//    	double intakeLiftSpeed = Robot.m_oi.operatorGamepad.getRawAxis(1) * -1;
+//    	CubeIntake.driveLiftMotor(intakeLiftSpeed * 0.5);
     	//System.out.println("STICK SPEED " + intakeLiftSpeed);
     	
     	
+    	
+    	//control intake lift 
+    	if(OperatorB){
+    		CubeIntake.driveLiftMotor(0.6);
+    	}else if(OperatorX){
+    		CubeIntake.driveLiftMotor(-.2);
+    	}else{
+    		CubeIntake.driveLiftMotor(0);
+    	}
     	
     	//-----------------------------------------------------------------------------------------------------------------------------------------
     	//FLIP BUCKET
@@ -176,8 +176,8 @@ public class DriverOperated extends Command {
     		break;
     	}
     	
-//    	Vision.setCamAxisX(camAxisXRotation);
-//    	Vision.setCamAxisY(camAxisYRotation);
+    	Vision.setCamAxisX(camAxisXRotation);
+    	Vision.setCamAxisY(camAxisYRotation);
     }
 
     private void increaseXAxis() {

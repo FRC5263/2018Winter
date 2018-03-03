@@ -169,8 +169,8 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		Vision.setCamAxisX(0.5);
-		Vision.setCamAxisY(0.5);
+		//Vision.setCamAxisX(0);
+		//Vision.setCamAxisY(0);
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
@@ -182,8 +182,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Vision.setCamAxisX(0.5);
-		Vision.setCamAxisY(0.5);
+		//Vision.setCamAxisX(0);
+		//Vision.setCamAxisY(0);
 		Scheduler.getInstance().run();
 		myVision.VisionPeriodic();
 	}

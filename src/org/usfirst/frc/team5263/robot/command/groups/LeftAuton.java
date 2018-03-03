@@ -35,7 +35,8 @@ public class LeftAuton extends CommandGroup {
     			
     			addSequential(new DriveTo(12.75, .4, 90));
     			addSequential(new RotatePID(180));
-
+    			addSequential(new DriveTo(0.5, .4, 180));
+    			
     			addSequential(new Lift(-0.4, 0.5));
     			addSequential(new FlipBucket());	
     			}
