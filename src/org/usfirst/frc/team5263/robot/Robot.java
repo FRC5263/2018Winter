@@ -8,6 +8,8 @@
 
 package org.usfirst.frc.team5263.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -18,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5263.robot.command.groups.CenterAuton;
 import org.usfirst.frc.team5263.robot.command.groups.DriveToShape;
 import org.usfirst.frc.team5263.robot.command.groups.LeftAuton;
+import org.usfirst.frc.team5263.robot.command.groups.LeftAutonExtraSucc;
 import org.usfirst.frc.team5263.robot.command.groups.RightAuton;
 import org.usfirst.frc.team5263.robot.command.groups.SwitchAuton;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
@@ -57,7 +60,7 @@ public class Robot extends TimedRobot {
 	
 	
 	enum commandName{
-		Left, Center, Right, Wait;
+		Left, Center, Right, Wait, Succ;
 	}
 	
 	/**
@@ -67,12 +70,15 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		
+		CameraServer.getInstance().startAutomaticCapture();
+		
 		m_oi = new OI();
 		
 		m_chooser.addDefault("Default Auto", commandName.Wait);
 		m_chooser.addObject("Left Auton", commandName.Left);
 		m_chooser.addObject("Right Auton", commandName.Right);
 		m_chooser.addObject("Center Auton", commandName.Center);
+		m_chooser.addObject("Succ", commandName.Succ);
 		SmartDashboard.putData("Auto mode", m_chooser);
 		LiveWindow.add(DriveTrain.sharedInstance().turnController);
 		LiveWindow.add(DriveTrain.sharedInstance().driveController);
@@ -108,6 +114,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		teleop.cancel();
 		DriveTrain.sharedInstance().reset();
 		//very temporary, yell at me later
 		Vision.setCamAxisX(0.5);
@@ -132,6 +139,9 @@ public class Robot extends TimedRobot {
 			break;
 		case Wait:
 			m_autonomousCommand = new Wait(1000);
+			break;
+		case Succ:
+			m_autonomousCommand = new LeftAutonExtraSucc();
 			break;
 		default:
 			break;

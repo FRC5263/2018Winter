@@ -16,6 +16,7 @@ public class Lift extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.myCubeIntake);
         setTimeout(timeout);
+        this.power = power;
     }
 
     // Called just before this Command runs the first time
@@ -24,6 +25,7 @@ public class Lift extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//System.out.println("RUN PLease");
     	CubeIntake.driveLiftMotor(power);
     }
 
