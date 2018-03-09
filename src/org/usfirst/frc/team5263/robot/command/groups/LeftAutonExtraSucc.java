@@ -39,16 +39,17 @@ public class LeftAutonExtraSucc extends CommandGroup {
     			
     			addSequential(new DriveTo(13.25, 0.4, 90, 6));
     			addSequential(new RotatePID(180));
-    			addSequential(new DriveTo(0.85, .2, 180, 1));
+    			addSequential(new DriveTo(1.2, .2, 180, 1));
     			
     			System.out.println("RUN");
-    			addSequential(new Lift(-1, .2));
 
     			addSequential(new FlipBucket());
     			
     			addSequential(new Wait(1));
     			
     			addSequential(new DriveTo(-1.5, .4, 180, .5));
+    			
+    			addSequential(new Lift(-1, .2));
     			
     			addParallel(new DriveTo(1.5, .2, 180, .5));
     			
