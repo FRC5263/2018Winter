@@ -129,13 +129,13 @@ public class Robot extends TimedRobot {
 		
 		switch (m_chooser.getSelected()) {
 		case Right:
-			m_autonomousCommand = new RightAuton();
+			m_autonomousCommand = new SwitchAuton("R");
 			break;
 		case Left:
-			m_autonomousCommand = new LeftAuton();
+			m_autonomousCommand = new SwitchAuton("L");
 			break;
 		case Center:
-			m_autonomousCommand = new CenterAuton();
+			m_autonomousCommand = new SwitchAuton("C");
 			break;
 		case Wait:
 			m_autonomousCommand = new Wait(1000);

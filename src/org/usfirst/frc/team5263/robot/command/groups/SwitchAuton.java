@@ -4,6 +4,7 @@ import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.FlipBucket;
 import org.usfirst.frc.team5263.robot.commands.Lift;
 import org.usfirst.frc.team5263.robot.commands.RotatePID;
+import org.usfirst.frc.team5263.robot.commands.Suck;
 import org.usfirst.frc.team5263.robot.commands.Wait;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -22,9 +23,41 @@ public class SwitchAuton extends CommandGroup {
     	this.LRC = LRC;
     }
     
+    public enum DriveToValues{
+		DrivePower(0.4), 
+		ShortFirstDriveLength(12), 
+		ShortSecondDriveLength(1), 
+		LiftPower(0.2), 
+		LongFirstDriveLength(17.5), 
+		LongSecondDriveLength(13.25), 
+		LongThirdDriveLength(.85),
+		LongFourthDriveLength(1.5),
+		OneFifthDriveSpeed(.2),
+		LongSuckInSpeed(.5),
+		
+		;
+		
+		public final double value;
+		
+		private DriveToValues(double value) {
+			this.value = value;
+		}
+	}
+    
     protected void initialize() {
+    	double DrivePower = DriveToValues.DrivePower.value;
+    	double OneFifthDriveSpeed = DriveToValues.OneFifthDriveSpeed.value;
     	
+    	double LiftPower = DriveToValues.LiftPower.value;
+    	double LongSuckInSpeed = DriveToValues.LongSuckInSpeed.value;
     	
+    	double ShortFirstDriveLength = DriveToValues.ShortFirstDriveLength.value;
+    	double ShortSecondDriveLength = DriveToValues.ShortSecondDriveLength.value;
+    	
+    	double LongFirstDriveLength = DriveToValues.LongFirstDriveLength.value;
+    	double LongSecondDriveLength = DriveToValues.LongSecondDriveLength.value;
+    	double LongThirdDriveLength = DriveToValues.LongThirdDriveLength.value;
+		double LongFourthDriveLength = DriveToValues.LongFourthDriveLength.value;
     	this.gameData = DriverStation.getInstance().getGameSpecificMessage();
     	if(LRC == "L"){
     		
@@ -32,49 +65,75 @@ public class SwitchAuton extends CommandGroup {
         		if(gameData.charAt(0) == 'L'){
         			System.out.println("Run Left Auto");
         			
-        			addSequential(new DriveTo(12, .4, 0, 6));
+        			addSequential(new DriveTo(ShortFirstDriveLength, DrivePower, 0, 6));
         			addSequential(new RotatePID(90));
         			
-        			addSequential(new DriveTo(1, .4, 90, 1));
-        			addSequential(new Lift(-0.4, 0.5));
+        			addSequential(new DriveTo(ShortSecondDriveLength, DrivePower, 90, 1));
+        			
+        			addSequential(new Lift(-1, LiftPower));
+        			
         			addSequential(new FlipBucket());
         			//This function runs if the data is for the right side
         		}else {
         			System.out.println("Run Right Auto");
         			
-        			addSequential(new DriveTo(17.5, .4, 0, 7));
+        			addSequential(new DriveTo(LongFirstDriveLength, DrivePower, 0, 7));
         			addSequential(new RotatePID(90));
         			
-        			addSequential(new DriveTo(13.25, .4, 90, 6));
+        			addSequential(new DriveTo(LongSecondDriveLength, DrivePower, 90, 6));
         			addSequential(new RotatePID(180));
-        			addSequential(new DriveTo(0.5, .4, 180, 1));
         			
-        			addSequential(new Lift(-0.4, 0.5));
-        			addSequential(new FlipBucket());	
+        			//Driving slower than usual
+        			addSequential(new DriveTo(LongThirdDriveLength, OneFifthDriveSpeed, 180, 1));
+        			
+        			System.out.println("RUN");
+        			addSequential(new Lift(-1, .2));
+
+        			addSequential(new FlipBucket());
+        			
+        			addSequential(new Wait(1));
+        			
+        			addSequential(new DriveTo(-LongFourthDriveLength, DrivePower, 180, .5));
+        			
+        			addParallel(new DriveTo(LongFourthDriveLength, OneFifthDriveSpeed, 180, .5));
+        			
+        			addParallel(new Suck(LongSuckInSpeed, 1.5));	
         			}
         	}
     		
     	}else if(LRC == "R"){
     		if(gameData.length() > 0) {
     			if(gameData.charAt(0) == 'L'){
-    				System.out.println("Run Left Auto");
-    				
-    				addSequential(new DriveTo(16.5, .4, 0, 7));
+    				addSequential(new DriveTo(LongFirstDriveLength, DrivePower, 0, 7));
         			addSequential(new RotatePID(-90));
         			
-        			addSequential(new DriveTo(13.25, .4, -90, 6));
+        			addSequential(new DriveTo(LongSecondDriveLength, DrivePower, -90, 6));
         			addSequential(new RotatePID(-180));
-        			addParallel(new DriveTo(0.5, .4, -180, 1));
         			
-    				addSequential(new FlipBucket());
+        			//Driving slower than usual
+        			addSequential(new DriveTo(LongThirdDriveLength, OneFifthDriveSpeed, -180, 1));
+        			
+        			System.out.println("RUN");
+        			addSequential(new Lift(-1, .2));
+
+        			addSequential(new FlipBucket());
+        			
+        			addSequential(new Wait(1));
+        			
+        			addSequential(new DriveTo(-LongFourthDriveLength, DrivePower, -180, .5));
+        			
+        			addParallel(new DriveTo(LongFourthDriveLength, OneFifthDriveSpeed, -180, .5));
+        			
+        			addParallel(new Suck(LongSuckInSpeed, 1.5));
     				//This function runs if the data is for the right side
     			}else {
-    				System.out.println("Run Right Auto");
-    				
-    				addSequential(new DriveTo(12, .4, 0, 6));
+    				addSequential(new DriveTo(ShortFirstDriveLength, DrivePower, 0, 6));
         			addSequential(new RotatePID(-90));
         			
-        			addSequential(new DriveTo(1, .4, -90, 1));
+        			addSequential(new DriveTo(ShortSecondDriveLength, DrivePower, -90, 1));
+        			
+        			addSequential(new Lift(-1, LiftPower));
+        			
         			addSequential(new FlipBucket());
     				
     			}
