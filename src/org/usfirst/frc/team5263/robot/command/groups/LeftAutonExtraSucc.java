@@ -26,7 +26,9 @@ public class LeftAutonExtraSucc extends CommandGroup {
     			addSequential(new RotatePID(90));
     			
     			addSequential(new DriveTo(1, .4, 90, 1));
-    			addSequential(new Lift(-0.4, 0.5));
+    			
+    			addSequential(new Lift(-1, 0.2));
+    			
     			addSequential(new FlipBucket());
     			//This function runs if the data is for the left side
     		}else {
