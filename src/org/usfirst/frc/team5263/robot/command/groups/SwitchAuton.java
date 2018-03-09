@@ -23,41 +23,22 @@ public class SwitchAuton extends CommandGroup {
     	this.LRC = LRC;
     }
     
-    public enum DriveToValues{
-		DrivePower(0.4), 
-		ShortFirstDriveLength(12), 
-		ShortSecondDriveLength(1), 
-		LiftPower(0.2), 
-		LongFirstDriveLength(17.5), 
-		LongSecondDriveLength(13.25), 
-		LongThirdDriveLength(.85),
-		LongFourthDriveLength(1.5),
-		OneFifthDriveSpeed(.2),
-		LongSuckInSpeed(.5),
-		
-		;
-		
-		public final double value;
-		
-		private DriveToValues(double value) {
-			this.value = value;
-		}
-	}
+    private final double DrivePower = 0.5;
+    private final double OneFifthDriveSpeed = 0.4;
+    
+    private final double LiftPower = 0.2;
+    private final double LongSuckInSpeed = 0.5;
+    
+    private final double ShortFirstDriveLength = 12;
+    private final double ShortSecondDriveLength = 1;
+    
+    private final double LongFirstDriveLength = 17.5;
+    private final double LongSecondDriveLength = 13.25;
+    private final double LongThirdDriveLength = 1;
+    private final double LongFourthDriveLength = 1.5;
     
     protected void initialize() {
-    	double DrivePower = DriveToValues.DrivePower.value;
-    	double OneFifthDriveSpeed = DriveToValues.OneFifthDriveSpeed.value;
-    	
-    	double LiftPower = DriveToValues.LiftPower.value;
-    	double LongSuckInSpeed = DriveToValues.LongSuckInSpeed.value;
-    	
-    	double ShortFirstDriveLength = DriveToValues.ShortFirstDriveLength.value;
-    	double ShortSecondDriveLength = DriveToValues.ShortSecondDriveLength.value;
-    	
-    	double LongFirstDriveLength = DriveToValues.LongFirstDriveLength.value;
-    	double LongSecondDriveLength = DriveToValues.LongSecondDriveLength.value;
-    	double LongThirdDriveLength = DriveToValues.LongThirdDriveLength.value;
-		double LongFourthDriveLength = DriveToValues.LongFourthDriveLength.value;
+		
     	this.gameData = DriverStation.getInstance().getGameSpecificMessage();
     	if(LRC == "L"){
     		
