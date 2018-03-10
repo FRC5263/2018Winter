@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftAutonExtraSucc extends CommandGroup {
+public class LeftONLYLEFT extends CommandGroup {
 
-    public LeftAutonExtraSucc() {
+    public LeftONLYLEFT() {
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();
     	
     	if(gameData.length() > 0) {
@@ -34,28 +34,9 @@ public class LeftAutonExtraSucc extends CommandGroup {
     		}else {
     			System.out.println("Run Right Auto");
     			
-    			addSequential(new DriveTo(17.5, .4, 0, 7));
-    			addSequential(new RotatePID(90));
-    			
-    			addSequential(new DriveTo(13.25, 0.4, 90, 6));
-    			addSequential(new RotatePID(180));
-    			addSequential(new DriveTo(1.2, .2, 180, 1));
-    			
-    			System.out.println("RUN");
-    			
-    			addSequential(new Lift(-1, .2));
-    			
-    			addSequential(new FlipBucket());
-    			
-    			addSequential(new Wait(1));
-    			
-    			addSequential(new DriveTo(-1.5, .4, 180, .5));
-    			
-    			addParallel(new Lift(1, .2));
-    			
-    			addParallel(new DriveTo(1.5, .2, 180, .5));
-    			
-    			addParallel(new Suck(.5, 1.5));
+    			addSequential(new DriveTo(7, .4, 0, 5));
+    			addSequential(new RotatePID(-15));
+    			addSequential(new DriveTo(5, .4, -15, 5));
     			}
     	}
     }

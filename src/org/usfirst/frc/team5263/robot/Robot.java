@@ -17,12 +17,15 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5263.robot.command.groups.BreakBaseline;
 import org.usfirst.frc.team5263.robot.command.groups.CenterAuton;
 import org.usfirst.frc.team5263.robot.command.groups.DriveToShape;
 import org.usfirst.frc.team5263.robot.command.groups.LeftAuton;
 import org.usfirst.frc.team5263.robot.command.groups.LeftAutonExtraSucc;
+import org.usfirst.frc.team5263.robot.command.groups.LeftONLYLEFT;
 import org.usfirst.frc.team5263.robot.command.groups.RightAuton;
 import org.usfirst.frc.team5263.robot.command.groups.SwitchAuton;
+import org.usfirst.frc.team5263.robot.command.groups.rightONLYRIGHT;
 import org.usfirst.frc.team5263.robot.commands.DriveTo;
 import org.usfirst.frc.team5263.robot.commands.DriveUntil;
 import org.usfirst.frc.team5263.robot.commands.DriverOperated;
@@ -60,7 +63,7 @@ public class Robot extends TimedRobot {
 	
 	
 	enum commandName{
-		Left, Center, Right, Wait, Succ;
+		Left, Center, Right, Wait, Succ, Base, leftonly, rightonly;
 	}
 	
 	/**
@@ -78,7 +81,10 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Left Auton", commandName.Left);
 		m_chooser.addObject("Right Auton", commandName.Right);
 		m_chooser.addObject("Center Auton", commandName.Center);
+		m_chooser.addObject("Base", commandName.Base);
 		m_chooser.addObject("Succ", commandName.Succ);
+		m_chooser.addObject("RIGHTONLY RIGHT", commandName.rightonly);
+		m_chooser.addObject("LEFTONLY LEFT", commandName.leftonly);
 		SmartDashboard.putData("Auto mode", m_chooser);
 		LiveWindow.add(DriveTrain.sharedInstance().turnController);
 		LiveWindow.add(DriveTrain.sharedInstance().driveController);
@@ -142,6 +148,15 @@ public class Robot extends TimedRobot {
 			break;
 		case Succ:
 			m_autonomousCommand = new LeftAutonExtraSucc();
+			break;
+		case Base:
+			m_autonomousCommand = new BreakBaseline();
+			break;
+		case leftonly:
+			m_autonomousCommand = new LeftONLYLEFT();
+			break;
+		case rightonly:
+			m_autonomousCommand = new rightONLYRIGHT();
 			break;
 		default:
 			break;
