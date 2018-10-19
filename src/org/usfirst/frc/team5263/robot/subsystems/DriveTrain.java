@@ -34,15 +34,25 @@ public class DriveTrain extends Subsystem {
 	static final double turnControllerkD = 0.1;
 	static final double turnControllerkF = 0.00;
 	static final double turnControllerkToleranceDegrees = 2.0f;
-
+	
+	
+	
 	//DriveTo PID #TEMPORARY
 	public PIDController driveController;
+	public PIDController speedController;
 	static final double driveControllerkP = 0.03; 		
 	static final double driveControllerkI = 1.0E-5 ;
 	static final double driveControllerkD = 0.1;
 	static final double driveControllerkF = 0.00;
 	static final double driveControllerkToleranceinches = 2.0f;
 	public double driveControllerAngle = 0;	
+	
+	static final double speedControllerkP = 0.03; 		
+	static final double speedControllerkI = 1.0E-5 ;
+	static final double speedControllerkD = 0.1;
+	static final double speedControllerkF = 0.00;
+	static final double speedControllerkToleranceinches = 2.0f;
+	public double speedControllerAngle = 0;	
 
 
 	//ROTATION RATE PID #TEMPORARY
@@ -83,7 +93,35 @@ public class DriveTrain extends Subsystem {
 		sonic = new Ultrasonic(RobotMap.ultrasonicInputChannel,RobotMap.ultrasonicOutputChannel);//input, output on the sensor		
 		sonic.setAutomaticMode(true);
 
+		
+		speedController = new PIDController(speedControllerkP, speedControllerkI, speedControllerkD, speedControllerkF, new PIDSource() {
 
+			@Override
+			public void setPIDSourceType(PIDSourceType pidSource) {
+
+			} 
+
+			@Override
+			public double pidGet() {
+				return getLeftEncoderInches();
+			}
+
+			@Override
+			public PIDSourceType getPIDSourceType() {
+				return PIDSourceType.kDisplacement;
+			}
+		},  new PIDOutput() {
+			@Override
+			public void pidWrite(double output) {
+				double correction = 1 * ((getRotation() - speedControllerAngle) / 100) ;
+
+				drive(output - correction, output + correction);
+			}
+		});
+		speedController.setName("Speed Controller");
+		speedController.setOutputRange(-1.0, 1.0);
+		speedController.setAbsoluteTolerance(turnControllerkToleranceDegrees);
+		
 		//ROTATION PID 
 		turnController = new PIDController(turnControllerkP, turnControllerkI, turnControllerkD, turnControllerkF, new PIDSource() {
 
