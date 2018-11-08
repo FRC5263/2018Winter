@@ -306,6 +306,9 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber(   "IMU_Yaw",              ahrs.getYaw());
 		SmartDashboard.putNumber(   "IMU_Pitch",            ahrs.getPitch());
 		SmartDashboard.putNumber(   "IMU_Roll",             ahrs.getRoll());
+		SmartDashboard.putNumber(	"Velocity X", 			ahrs.getVelocityX());
+		SmartDashboard.putNumber(	"Velocity Y", 			ahrs.getVelocityY());
+		SmartDashboard.putNumber(	"Velocity Z", 			ahrs.getVelocityZ());
 
 		/* Display tilt-corrected, Magnetometer-based heading (requires             */
 		/* magnetometer calibration to be useful)                                   */
